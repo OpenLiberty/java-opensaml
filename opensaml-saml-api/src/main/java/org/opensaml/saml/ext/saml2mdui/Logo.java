@@ -65,7 +65,7 @@ public interface Logo extends LocalizedURI, SAMLObject {
      * 
      * @return the URL
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     @Nullable default String getURL() {
         DeprecationSupport.warn(ObjectType.METHOD, "getURL", Logo.class.toString(), "getURI");
         return getURI();
@@ -76,7 +76,7 @@ public interface Logo extends LocalizedURI, SAMLObject {
      * 
      * @param uri the URL
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     default void setURL(@Nullable final String uri) {
         DeprecationSupport.warn(ObjectType.METHOD, "setURL", Logo.class.toString(), "setURI");
         setURI(uri);

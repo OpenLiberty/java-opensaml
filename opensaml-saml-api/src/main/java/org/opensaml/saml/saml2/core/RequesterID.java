@@ -46,7 +46,7 @@ public interface RequesterID extends SAMLObject, XSURI {
      * 
      * @return RequesterID value
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     @Nullable default String getRequesterID() {
         DeprecationSupport.warn(ObjectType.METHOD, "getRequesterID", RequesterID.class.toString(), "getURI");
         return getURI();
@@ -57,7 +57,7 @@ public interface RequesterID extends SAMLObject, XSURI {
      * 
      * @param value the RequesterID value
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     default void setRequesterID(@Nullable final String value) {
         DeprecationSupport.warn(ObjectType.METHOD, "setRequesterID", RequesterID.class.toString(), "setURI");
         setURI(value);

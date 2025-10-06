@@ -46,7 +46,7 @@ public interface AssertionArtifact extends XSString, SAMLObject {
      * 
      * @return the artifact value
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     @Nullable default String getAssertionArtifact() {
         DeprecationSupport.warn(ObjectType.METHOD, "getAssertionArtifact", AssertionArtifact.class.toString(),
                 "getValue");
@@ -58,7 +58,7 @@ public interface AssertionArtifact extends XSString, SAMLObject {
      * 
      * @param value new artifact value
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     default void setAssertionArtifact(@Nullable final String value) {
         DeprecationSupport.warn(ObjectType.METHOD, "setAssertionArtifact", AssertionArtifact.class.toString(),
                 "setValue");

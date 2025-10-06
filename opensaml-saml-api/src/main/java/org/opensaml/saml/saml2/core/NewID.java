@@ -50,7 +50,7 @@ public interface NewID extends SAMLObject, XSString {
      * 
      * @return NewID value
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     @Nullable default String getNewID() {
         DeprecationSupport.warn(ObjectType.METHOD, "getNewID", NewID.class.toString(), "getValue");
         return getValue();
@@ -61,7 +61,7 @@ public interface NewID extends SAMLObject, XSString {
      * 
      * @param value the new NewID value
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     default void setNewID(@Nullable final String value) {
         DeprecationSupport.warn(ObjectType.METHOD, "setNewID", NewID.class.toString(), "setValue");
         setValue(value);

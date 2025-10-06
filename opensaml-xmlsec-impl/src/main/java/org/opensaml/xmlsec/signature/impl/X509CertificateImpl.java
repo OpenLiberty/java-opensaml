@@ -17,8 +17,7 @@
 
 package org.opensaml.xmlsec.signature.impl;
 
-import java.lang.ref.Cleaner;
-import java.lang.ref.Cleaner.Cleanable;
+import net.shibboleth.utilities.java.support.primitive.CleanerCompat;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -38,12 +37,11 @@ public class X509CertificateImpl extends AbstractXMLObject implements X509Certif
     /** Class-level index of Base64 encoded cert values. */
     private static final IndexingObjectStore<String> B64_CERT_STORE = new IndexingObjectStore<>();
 
-    /** The {@link Cleaner} instance to use. */
-    private static final Cleaner CLEANER = CleanerSupport.getInstance(X509CertificateImpl.class);
+    /** The Cleaner-like instance to use. */
+    private static final CleanerSupport.CleanerLike CLEANER = CleanerSupport.getInstance(X509CertificateImpl.class);
 
-    /** The {@link Cleanable} representing the current instance's cert value, as represented by the
-     * current <code>b64CertIndex</code> field value. */
-    private Cleaner.Cleanable cleanable;
+    /** The Cleanable representing the current instance's cert value. */
+    private CleanerCompat.Cleanable cleanable;
 
     /** Index to a stored Base64 encoded cert. */
     private String b64CertIndex;

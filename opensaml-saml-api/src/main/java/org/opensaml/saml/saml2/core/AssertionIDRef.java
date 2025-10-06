@@ -46,7 +46,7 @@ public interface AssertionIDRef extends SAMLObject, XSString, Evidentiary {
      * 
      * @return the ID of the assertion this references
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     @Nullable default String getAssertionID() {
         DeprecationSupport.warn(ObjectType.METHOD, "getAssertionID", AssertionIDRef.class.toString(), "getValue");
         return getValue();
@@ -57,7 +57,7 @@ public interface AssertionIDRef extends SAMLObject, XSString, Evidentiary {
      * 
      * @param value the ID of the assertion this references
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     default void setAssertionID(@Nullable final String value) {
         DeprecationSupport.warn(ObjectType.METHOD, "setAssertionID", AssertionIDRef.class.toString(), "setValue");
         setValue(value);

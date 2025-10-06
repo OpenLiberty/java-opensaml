@@ -50,7 +50,7 @@ public interface Audience extends SAMLObject, XSURI {
      * 
      * @return the URI of the audience for the assertion
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     @Nullable default String getUri() {
         DeprecationSupport.warn(ObjectType.METHOD, "getUri", Audience.class.toString(), "getURI");
         return getURI();
@@ -61,7 +61,7 @@ public interface Audience extends SAMLObject, XSURI {
      * 
      * @param uri the URI of the audience for the assertion
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     default void setUri(@Nullable final String uri) {
         DeprecationSupport.warn(ObjectType.METHOD, "setUri", Audience.class.toString(), "setURI");
         setURI(uri);

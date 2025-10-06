@@ -82,7 +82,7 @@ public class IPRangePredicate implements Predicate<BaseContext> {
      *
      * @param request servlet request to evaluate
      */
-    @Deprecated(since = "4.3", forRemoval = true)
+    @Deprecated
     public void setHttpServletRequest(@Nonnull final HttpServletRequest request) {
         DeprecationSupport.warnOnce(ObjectType.METHOD, "setHttpServletRequest", null, "setHttpServletRequestSupplier");
         Constraint.isNotNull(request, "HttpServletRequest cannot be null");

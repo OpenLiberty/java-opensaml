@@ -41,7 +41,7 @@ import org.slf4j.LoggerFactory;
 /**
  * A message handler that checks basic HTTP request properties.
  */
-@Deprecated(forRemoval = true, since="4.3")
+@Deprecated
 public class HTTPRequestValidationHandler extends AbstractMessageHandler {
 
     /** Class logger. */

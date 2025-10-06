@@ -58,7 +58,7 @@ public interface XSURI extends XMLObject {
      * 
      * @return the URI content of the element
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     @Nullable default String getValue() {
         DeprecationSupport.warn(ObjectType.METHOD, "getValue", XSURI.class.toString(), "getURI");
         return getURI();
@@ -69,7 +69,7 @@ public interface XSURI extends XMLObject {
      * 
      * @param uri the URI content of the element
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     default void setValue(@Nullable final String uri) {
         DeprecationSupport.warn(ObjectType.METHOD, "setValue", XSURI.class.toString(), "setURI");
         setURI(uri);

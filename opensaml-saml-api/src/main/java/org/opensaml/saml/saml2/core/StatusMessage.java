@@ -46,7 +46,7 @@ public interface StatusMessage extends SAMLObject, XSString {
      * 
      * @return StatusMessage message
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     @Nullable default String getMessage() {
         DeprecationSupport.warn(ObjectType.METHOD, "getMessage", StatusMessage.class.toString(), "getValue");
         return getValue();
@@ -57,7 +57,7 @@ public interface StatusMessage extends SAMLObject, XSString {
      * 
      * @param value the Message of this Status Message
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     default void setMessage(@Nullable final String value) {
         DeprecationSupport.warn(ObjectType.METHOD, "setMessage", StatusMessage.class.toString(), "setValue");
         setValue(value);

@@ -54,7 +54,7 @@ public interface GeolocationHint extends SAMLObject, XSURI {
      * 
      * @return the Hint
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     @Nullable default String getHint() {
         DeprecationSupport.warn(ObjectType.METHOD, "getHint", GeolocationHint.class.toString(), "getURI");
         return getURI();
@@ -65,7 +65,7 @@ public interface GeolocationHint extends SAMLObject, XSURI {
      * 
      * @param value hint
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     default void setHint(@Nullable final String value) {
         DeprecationSupport.warn(ObjectType.METHOD, "setHint", GeolocationHint.class.toString(), "setURI");
         setURI(value);

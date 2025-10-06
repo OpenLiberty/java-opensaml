@@ -96,7 +96,7 @@ public class EntityRoleFilter implements MetadataFilter {
      * @return unmodifiable list of roles that are NOT removed by this filter
      * @deprecated
      */
-    @Deprecated(forRemoval=true, since="4.1.0")
+    @Deprecated
     @Nonnull @NonnullElements @Unmodifiable @NotLive public List<QName> getRoleWhiteList() {
         return getRetainedRoles();
     }

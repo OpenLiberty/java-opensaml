@@ -42,7 +42,7 @@ public interface HttpServletRequestMessageDecoder extends MessageDecoder {
      *
      * @param request the HTTP servlet request
      */
-    @Deprecated(forRemoval = true, since="4.3")
+    @Deprecated
     void setHttpServletRequest(@Nullable final HttpServletRequest request);
 
     /**

@@ -46,7 +46,7 @@ public interface Company extends SAMLObject, XSString {
      * 
      * @return the name of the company
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     @Nullable default String getName() {
         DeprecationSupport.warn(ObjectType.METHOD, "getName", Company.class.toString(), "getValue");
         return getValue();
@@ -57,7 +57,7 @@ public interface Company extends SAMLObject, XSString {
      * 
      * @param value the name of the company
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     default void setName(@Nullable final String value) {
         DeprecationSupport.warn(ObjectType.METHOD, "setName", Company.class.toString(), "setValue");
         setValue(value);

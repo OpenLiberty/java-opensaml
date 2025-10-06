@@ -46,7 +46,7 @@ public interface TelephoneNumber extends SAMLObject, XSString {
      * 
      * @return the telephone number
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     @Nullable default String getNumber() {
         DeprecationSupport.warn(ObjectType.METHOD, "getNumber", TelephoneNumber.class.toString(), "getValue");
         return getValue();
@@ -57,7 +57,7 @@ public interface TelephoneNumber extends SAMLObject, XSString {
      * 
      * @param value the telephone number
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     default void setNumber(@Nullable final String value) {
         DeprecationSupport.warn(ObjectType.METHOD, "setNumber", TelephoneNumber.class.toString(), "setValue");
         setValue(value);

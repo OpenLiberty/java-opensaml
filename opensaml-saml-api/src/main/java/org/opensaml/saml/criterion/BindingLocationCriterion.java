@@ -32,7 +32,7 @@ import net.shibboleth.utilities.java.support.resolver.Criterion;
  * 
  * @deprecated
  */
-@Deprecated(since="4.2.0", forRemoval=true)
+@Deprecated
 public final class BindingLocationCriterion implements Criterion {
 
     /** The binding location URI. */

@@ -46,7 +46,7 @@ public interface NameIDFormat extends SAMLObject, XSURI {
      * 
      * @return the format of the NameID
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     @Nullable default String getFormat() {
         DeprecationSupport.warn(ObjectType.METHOD, "getFormat", NameIDFormat.class.toString(), "getURI");
         return getURI();
@@ -57,7 +57,7 @@ public interface NameIDFormat extends SAMLObject, XSURI {
      * 
      * @param uri the format of the NameID
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     default void setFormat(@Nullable final String uri) {
         DeprecationSupport.warn(ObjectType.METHOD, "setFormat", NameIDFormat.class.toString(), "setURI");
         setURI(uri);

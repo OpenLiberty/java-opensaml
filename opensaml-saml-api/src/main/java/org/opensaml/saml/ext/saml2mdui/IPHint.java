@@ -53,7 +53,7 @@ public interface IPHint extends SAMLObject, XSString {
      * 
      * @return the hint
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     @Nullable default String getHint() {
         DeprecationSupport.warn(ObjectType.METHOD, "getHint", IPHint.class.toString(), "getValue");
         return getValue();
@@ -64,7 +64,7 @@ public interface IPHint extends SAMLObject, XSString {
      * 
      * @param value hint
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     default void setHint(@Nullable final String value) {
         DeprecationSupport.warn(ObjectType.METHOD, "setHint", IPHint.class.toString(), "setValue");
         setValue(value);

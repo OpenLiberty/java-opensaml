@@ -50,7 +50,7 @@ public interface SessionIndex extends SAMLObject, XSString {
      * 
      * @return the session index value of the request
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     @Nullable default String getSessionIndex() {
         DeprecationSupport.warn(ObjectType.METHOD, "getSessionIndex", SessionIndex.class.toString(), "getValue");
         return getValue();
@@ -61,7 +61,7 @@ public interface SessionIndex extends SAMLObject, XSString {
      * 
      * @param value the new session index value of the request
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     default void setSessionIndex(@Nullable final String value) {
         DeprecationSupport.warn(ObjectType.METHOD, "setSessionIndex", SessionIndex.class.toString(), "setValue");
         setValue(value);

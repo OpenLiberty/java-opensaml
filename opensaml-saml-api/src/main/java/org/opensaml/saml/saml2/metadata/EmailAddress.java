@@ -46,7 +46,7 @@ public interface EmailAddress extends SAMLObject, XSURI {
      * 
      * @return the email address
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     @Nullable default String getAddress() {
         DeprecationSupport.warn(ObjectType.METHOD, "getAddress", EmailAddress.class.toString(), "getURI");
         return getURI();
@@ -57,7 +57,7 @@ public interface EmailAddress extends SAMLObject, XSURI {
      * 
      * @param value email address
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     default void setAddress(@Nullable final String value) {
         DeprecationSupport.warn(ObjectType.METHOD, "setAddress", EmailAddress.class.toString(), "setURI");
         setURI(value);

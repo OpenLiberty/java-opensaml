@@ -46,7 +46,7 @@ public interface AttributeProfile extends SAMLObject, XSURI {
      * 
      * @return the URI of this attribute profile
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     @Nullable default String getProfileURI() {
         DeprecationSupport.warn(ObjectType.METHOD, "getProfileURI", AttributeProfile.class.toString(), "getURI");
         return getURI();
@@ -57,7 +57,7 @@ public interface AttributeProfile extends SAMLObject, XSURI {
      * 
      * @param uri the URI of this attribute profile
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     default void setProfileURI(@Nullable final String uri) {
         DeprecationSupport.warn(ObjectType.METHOD, "setProfileURI", AttributeProfile.class.toString(), "setURI");
         setURI(uri);

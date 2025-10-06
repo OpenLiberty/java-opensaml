@@ -75,7 +75,7 @@ public abstract class AbstractHttpServletResponseMessageEncoder extends Abstract
     /**
      * {@inheritDoc}
      */
-    @Deprecated(since = "4.3", forRemoval = true)
+    @Deprecated
     public synchronized void setHttpServletResponse(@Nullable final HttpServletResponse response) {
         ComponentSupport.ifInitializedThrowUnmodifiabledComponentException(this);
 

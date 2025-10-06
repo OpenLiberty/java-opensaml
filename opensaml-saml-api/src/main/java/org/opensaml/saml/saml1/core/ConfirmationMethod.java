@@ -65,7 +65,7 @@ public interface ConfirmationMethod extends SAMLObject, XSURI {
      * 
      * @return the confirmation method
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     @Nullable default String getConfirmationMethod() {
         DeprecationSupport.warn(ObjectType.METHOD, "getConfirmationMethod", ConfirmationMethod.class.toString(),
                 "getURI");
@@ -77,7 +77,7 @@ public interface ConfirmationMethod extends SAMLObject, XSURI {
      * 
      * @param uri the confirmation method
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     default void setConfirmationMethod(@Nullable final String uri) {
         DeprecationSupport.warn(ObjectType.METHOD, "setConfirmationMethod", ConfirmationMethod.class.toString(),
                 "setURI");

@@ -49,7 +49,7 @@ public interface AuthnContextClassRef extends SAMLObject, XSURI {
      * 
      * @return authentication context class reference URI
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     @Nullable default String getAuthnContextClassRef() {
         DeprecationSupport.warn(ObjectType.METHOD, "getAuthnContextClassRef", AuthnContextClassRef.class.toString(),
                 "getURI");
@@ -61,7 +61,7 @@ public interface AuthnContextClassRef extends SAMLObject, XSURI {
      * 
      * @param uri the new AuthnContextClassRef URI
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     default void setAuthnContextClassRef(@Nullable final String uri) {
         DeprecationSupport.warn(ObjectType.METHOD, "setAuthnContextClassRef", AuthnContextClassRef.class.toString(),
                 "setURI");

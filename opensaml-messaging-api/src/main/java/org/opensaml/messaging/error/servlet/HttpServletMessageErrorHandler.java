@@ -29,7 +29,7 @@ import org.opensaml.messaging.error.MessageErrorHandler;
 /**
  * A specialization of message error handler for HTTP servlet container environments.
  */
-@Deprecated(forRemoval = true, since="4.3")
+@Deprecated
 public interface HttpServletMessageErrorHandler extends MessageErrorHandler {
     
     /**
@@ -44,7 +44,7 @@ public interface HttpServletMessageErrorHandler extends MessageErrorHandler {
      * 
      * @param request the HTTP servlet request
      */
-    @Deprecated(forRemoval = true, since="4.3")
+    @Deprecated
     void setHttpServletRequest(@Nullable final HttpServletRequest request);
 
     /**
@@ -68,7 +68,7 @@ public interface HttpServletMessageErrorHandler extends MessageErrorHandler {
      * 
      * @param response the HTTP servlet response
      */
-    @Deprecated(forRemoval = true, since="4.3")
+    @Deprecated
     void setHttpServletResponse(@Nullable final HttpServletResponse response);
 
     /**

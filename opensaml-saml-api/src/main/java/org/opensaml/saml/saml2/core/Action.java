@@ -124,7 +124,7 @@ public interface Action extends SAMLObject, XSString {
      * 
      * @return the value of the action to be performed
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     @Nullable default String getAction() {
         DeprecationSupport.warn(ObjectType.METHOD, "getAction", Action.class.toString(), "getValue");
         return getValue();
@@ -135,7 +135,7 @@ public interface Action extends SAMLObject, XSString {
      * 
      * @param value the value of the action to be performed
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     default void setAction(@Nullable final String value) {
         DeprecationSupport.warn(ObjectType.METHOD, "setAction", Action.class.toString(), "setValue");
         setValue(value);

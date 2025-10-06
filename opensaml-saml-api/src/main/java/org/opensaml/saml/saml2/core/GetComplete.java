@@ -46,7 +46,7 @@ public interface GetComplete extends SAMLObject, XSURI {
      * 
      * @return GetComplete URI
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     @Nullable default String getGetComplete() {
         DeprecationSupport.warn(ObjectType.METHOD, "getGetComplete", GetComplete.class.toString(), "getURI");
         return getURI();
@@ -57,7 +57,7 @@ public interface GetComplete extends SAMLObject, XSURI {
      * 
      * @param uri the GetComplete URI
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     default void setGetComplete(@Nullable final String uri) {
         DeprecationSupport.warn(ObjectType.METHOD, "setGetComplete", GetComplete.class.toString(), "setURI");
         setURI(uri);

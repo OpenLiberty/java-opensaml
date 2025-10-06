@@ -42,7 +42,7 @@ import net.shibboleth.utilities.java.support.primitive.DeprecationSupport.Object
  * 
  * @deprecated
  */
-@Deprecated(forRemoval=true, since="4.1.0")
+@Deprecated
 public class BasicWhitelistBlacklistConfiguration extends BasicAlgorithmPolicyConfiguration
         implements WhitelistBlacklistConfiguration {
     

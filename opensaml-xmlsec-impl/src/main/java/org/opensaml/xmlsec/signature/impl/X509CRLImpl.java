@@ -17,8 +17,6 @@
 
 package org.opensaml.xmlsec.signature.impl;
 
-import java.lang.ref.Cleaner;
-import java.lang.ref.Cleaner.Cleanable;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -39,11 +37,11 @@ public class X509CRLImpl extends AbstractXMLObject implements X509CRL {
     private static final IndexingObjectStore<String> B64_CRL_STORE = new IndexingObjectStore<>();
 
     /** The {@link Cleaner} instance to use. */
-    private static final Cleaner CLEANER = CleanerSupport.getInstance(X509CRLImpl.class);
+    private static final CleanerSupport.CleanerLike CLEANER = CleanerSupport.getInstance(X509CRLImpl.class);
 
     /** The {@link Cleanable} representing the current instance's CRL value, as represented by the
      * current <code>b64CRLIndex</code> field value. */
-    private Cleaner.Cleanable cleanable;
+    private CleanerCompat.Cleanable cleanable;
 
     /** Index to a stored Base64 encoded CRL. */
     private String b64CRLIndex;

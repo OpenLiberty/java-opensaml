@@ -83,7 +83,7 @@ public abstract class AbstractProfileAction extends AbstractInitializableCompone
      *
      * @param request current HTTP request
      */
-    @Deprecated(since = "4.3", forRemoval = true)
+    @Deprecated
     public void setHttpServletRequest(@Nullable final HttpServletRequest request) {
         ComponentSupport.ifInitializedThrowUnmodifiabledComponentException(this);
         if (request != null && !(request instanceof ThreadLocalHttpServletRequestProxy)) {
@@ -133,7 +133,7 @@ public abstract class AbstractProfileAction extends AbstractInitializableCompone
      *
      * @param response current HTTP response
      */
-    @Deprecated(since = "4.3", forRemoval = true)
+    @Deprecated
     public void setHttpServletResponse(@Nullable final HttpServletResponse response) {
         ComponentSupport.ifInitializedThrowUnmodifiabledComponentException(this);
 

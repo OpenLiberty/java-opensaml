@@ -49,7 +49,7 @@ public interface AssertionIDReference extends XSString, Evidentiary {
      * 
      * @return the ID of the assertion this references
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     @Nullable default String getReference() {
         DeprecationSupport.warn(ObjectType.METHOD, "getReference", AssertionIDReference.class.toString(), "getValue");
         return getValue();
@@ -60,7 +60,7 @@ public interface AssertionIDReference extends XSString, Evidentiary {
      * 
      * @param value the ID of the assertion this references
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     default void setReference(@Nullable final String value) {
         DeprecationSupport.warn(ObjectType.METHOD, "setReference", AssertionIDReference.class.toString(), "setValue");
         setValue(value);

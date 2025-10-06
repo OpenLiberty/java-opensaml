@@ -214,7 +214,7 @@ public class BasicSignatureSigningParametersResolver
      * 
      * @deprecated
      */
-    @Deprecated(since="4.1.0",forRemoval=true)
+    @Deprecated
     @Nonnull protected Predicate<String> getWhitelistBlacklistPredicate(@Nonnull final CriteriaSet criteria) {
         return getIncludeExcludePredicate(criteria);
     }

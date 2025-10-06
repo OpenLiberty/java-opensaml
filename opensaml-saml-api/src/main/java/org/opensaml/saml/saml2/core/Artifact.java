@@ -50,7 +50,7 @@ public interface Artifact extends SAMLObject, XSString {
      * 
      * @return the artifact value
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     @Nullable default String getArtifact() {
         DeprecationSupport.warn(ObjectType.METHOD, "getArtifact", Artifact.class.toString(), "getValue");
         return getValue();
@@ -61,7 +61,7 @@ public interface Artifact extends SAMLObject, XSString {
      * 
      * @param value new artifact value
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     default void setArtifact(@Nullable final String value) {
         DeprecationSupport.warn(ObjectType.METHOD, "setArtifact", Artifact.class.toString(), "setValue");
         setValue(value);

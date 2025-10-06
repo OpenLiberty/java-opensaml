@@ -64,7 +64,7 @@ public abstract class AbstractHttpServletRequestMessageDecoder extends AbstractM
 
     /** {@inheritDoc} */
     @Override
-    @Deprecated(since = "4.3", forRemoval = true)
+    @Deprecated
     public void setHttpServletRequest(@Nullable final HttpServletRequest request) {
         ComponentSupport.ifInitializedThrowUnmodifiabledComponentException(this);
         DeprecationSupport.warnOnce(ObjectType.METHOD, "setHttpServletRequest",

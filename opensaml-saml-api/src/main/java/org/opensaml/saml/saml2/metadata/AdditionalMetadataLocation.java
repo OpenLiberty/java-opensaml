@@ -56,7 +56,7 @@ public interface AdditionalMetadataLocation extends SAMLObject, XSURI {
      * 
      * @return the location URI
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     @Nullable default String getLocationURI() {
         DeprecationSupport.warn(ObjectType.METHOD, "getLocationURI", AdditionalMetadataLocation.class.toString(),
                 "getURI");
@@ -68,7 +68,7 @@ public interface AdditionalMetadataLocation extends SAMLObject, XSURI {
      * 
      * @param uri the location URI
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     default void setLocationURI(@Nullable final String uri) {
         DeprecationSupport.warn(ObjectType.METHOD, "setLocationURI", AdditionalMetadataLocation.class.toString(),
                 "setURI");

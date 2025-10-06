@@ -53,7 +53,7 @@ public interface AffiliateMember extends SAMLObject, XSURI {
      * 
      * @return the member's ID
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     @Nullable default String getID() {
         DeprecationSupport.warn(ObjectType.METHOD, "getID", AffiliateMember.class.toString(), "getURI");
         return getURI();
@@ -64,7 +64,7 @@ public interface AffiliateMember extends SAMLObject, XSURI {
      * 
      * @param uri the member's ID
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     default void setID(@Nullable final String uri) {
         DeprecationSupport.warn(ObjectType.METHOD, "setID", AffiliateMember.class.toString(), "setURI");
         setURI(uri);

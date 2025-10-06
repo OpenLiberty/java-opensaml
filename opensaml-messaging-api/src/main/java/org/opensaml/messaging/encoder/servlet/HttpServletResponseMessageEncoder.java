@@ -41,7 +41,7 @@ public interface HttpServletResponseMessageEncoder extends MessageEncoder {
      * 
      * @param response the HTTP servlet response
      */
-    @Deprecated(forRemoval = true, since="4.3")
+    @Deprecated
     void setHttpServletResponse(@Nullable final HttpServletResponse response);
     
     /**

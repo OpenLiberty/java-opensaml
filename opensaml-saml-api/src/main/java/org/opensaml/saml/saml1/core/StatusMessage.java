@@ -44,7 +44,7 @@ public interface StatusMessage extends SAMLObject, XSString {
      * 
      * @return  the message
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     @Nullable default String getMessage() {
         return getValue();
     }
@@ -54,7 +54,7 @@ public interface StatusMessage extends SAMLObject, XSString {
      * 
      * @param value  the message
      */
-    @Deprecated(forRemoval=true, since="4.0.0")
+    @Deprecated
     default void setMessage(@Nullable final String value) {
         setValue(value);
     }
