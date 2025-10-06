@@ -18,6 +18,7 @@
 package org.opensaml.xmlsec.encryption.support;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
@@ -78,7 +79,11 @@ public class KeyAgreementEncryptionConfiguration {
         if (params == null) {
             parameters = null;
         } else {
-            parameters = params.stream().filter(Objects::nonNull).collect(Collectors.toUnmodifiableSet());
+            parameters = Collections.unmodifiableSet(
+                            params.stream()
+                                .filter(Objects::nonNull)
+                                .collect(Collectors.toSet())
+                        );
         }
     }
 

@@ -17,6 +17,7 @@
 
 package org.opensaml.saml.metadata.resolver.filter.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -129,7 +130,7 @@ public class AlgorithmFilter extends AbstractInitializableComponent implements M
         applyMap = ArrayListMultimap.create(rules.size(), 1);
         for (final Map.Entry<Predicate<EntityDescriptor>,Collection<XMLObject>> entry : rules.entrySet()) {
             if (entry.getKey() != null && entry.getValue() != null) {
-                applyMap.putAll(entry.getKey(), List.copyOf(entry.getValue()));
+                applyMap.putAll(entry.getKey(), Collections.unmodifiableList(new ArrayList<>(entry.getValue())));
             }
         }
     }
@@ -164,20 +165,25 @@ public class AlgorithmFilter extends AbstractInitializableComponent implements M
         Set<String> existingSignings = Collections.emptySet();
         final Extensions exts = descriptor.getExtensions();
         if (exts != null) {
-            existingDigests = exts.getUnknownXMLObjects(DigestMethod.DEFAULT_ELEMENT_NAME)
+            existingDigests = Collections.unmodifiableSet(
+                exts.getUnknownXMLObjects(DigestMethod.DEFAULT_ELEMENT_NAME)
                     .stream()
                     .filter(DigestMethod.class::isInstance)
                     .map(DigestMethod.class::cast)
                     .map(DigestMethod::getAlgorithm)
                     .distinct()
-                    .collect(Collectors.toUnmodifiableSet());
-            existingSignings = exts.getUnknownXMLObjects(SigningMethod.DEFAULT_ELEMENT_NAME)
+                    .collect(Collectors.toSet())
+            );
+
+            existingSignings = Collections.unmodifiableSet(
+                exts.getUnknownXMLObjects(SigningMethod.DEFAULT_ELEMENT_NAME)
                     .stream()
                     .filter(SigningMethod.class::isInstance)
                     .map(SigningMethod.class::cast)
                     .map(SigningMethod::getAlgorithm)
                     .distinct()
-                    .collect(Collectors.toUnmodifiableSet());
+                    .collect(Collectors.toSet())
+            );
         }
         
         for (final Map.Entry<Predicate<EntityDescriptor>,Collection<XMLObject>> entry : applyMap.asMap().entrySet()) {

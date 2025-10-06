@@ -117,7 +117,7 @@ public class CertificateNameOptions implements Cloneable {
         if (names == null) {
             subjectAltNames = Collections.emptySet();
         } else {
-            subjectAltNames = Set.copyOf(names);
+            subjectAltNames = Collections.unmodifiableSet(new LinkedHashSet<>(names));
         }
     }
 

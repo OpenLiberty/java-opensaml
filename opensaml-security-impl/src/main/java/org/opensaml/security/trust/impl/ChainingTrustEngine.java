@@ -17,6 +17,8 @@
 
 package org.opensaml.security.trust.impl;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Nonnull;
@@ -55,7 +57,7 @@ public class ChainingTrustEngine<TokenType> implements TrustEngine<TokenType> {
      */
     public ChainingTrustEngine(
             @Nonnull @NonnullElements @ParameterName(name="chain") final List<TrustEngine<? super TokenType>> chain) {
-        engines = List.copyOf(Constraint.isNotNull(chain, "TrustEngine list cannot be null"));
+        engines = Collections.unmodifiableList(new ArrayList<>(Constraint.isNotNull(chain, "TrustEngine list cannot be null")));
     }
 
     /**

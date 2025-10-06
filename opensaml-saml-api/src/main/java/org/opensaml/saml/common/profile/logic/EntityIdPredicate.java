@@ -18,6 +18,8 @@
 package org.opensaml.saml.common.profile.logic;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.annotation.Nonnull;
@@ -46,7 +48,7 @@ public class EntityIdPredicate implements Predicate<EntityDescriptor> {
      * @param ids the entityIDs to check for
      */
     public EntityIdPredicate(@Nullable @ParameterName(name="ids") final Collection<String> ids) {
-        entityIds = Set.copyOf(StringSupport.normalizeStringCollection(ids));
+        entityIds = Collections.unmodifiableSet(new HashSet<>(StringSupport.normalizeStringCollection(ids)));
     }
     
     /**

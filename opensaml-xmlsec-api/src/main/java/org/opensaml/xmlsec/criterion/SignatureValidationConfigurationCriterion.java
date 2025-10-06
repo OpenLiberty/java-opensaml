@@ -17,6 +17,9 @@
 
 package org.opensaml.xmlsec.criterion;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Nonnull;
@@ -45,7 +48,7 @@ public class SignatureValidationConfigurationCriterion implements Criterion {
      */
     public SignatureValidationConfigurationCriterion(@Nonnull @NonnullElements @NotEmpty final
             List<SignatureValidationConfiguration> configurations) {
-        configs = List.copyOf(Constraint.isNotNull(configurations, "List of configurations cannot be null"));
+        configs = Collections.unmodifiableList(new ArrayList<>(Constraint.isNotNull(configurations, "List of configurations cannot be null")));
         Constraint.isNotEmpty(configs, "At least one configuration is required");
         
     }
@@ -57,7 +60,7 @@ public class SignatureValidationConfigurationCriterion implements Criterion {
      */
     public SignatureValidationConfigurationCriterion(@Nonnull @NonnullElements @NotEmpty final
             SignatureValidationConfiguration... configurations) {
-        configs = List.of(Constraint.isNotNull(configurations, "List of configurations cannot be null"));
+        configs = Collections.unmodifiableList(Arrays.asList(Constraint.isNotNull(configurations, "List of configurations cannot be null")));
         Constraint.isNotEmpty(configs, "At least one configuration is required");
     }
     

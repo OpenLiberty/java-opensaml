@@ -18,6 +18,8 @@
 package org.opensaml.xmlsec.impl;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -41,7 +43,7 @@ public class ExcludedAlgorithmsPredicate implements Predicate<String> {
      * @param algorithms collection of excluded algorithms
      */
     public ExcludedAlgorithmsPredicate(@Nonnull @NonnullElements final Collection<String> algorithms) {
-        excludes = Set.copyOf(Constraint.isNotNull(algorithms, "Exclusions may not be null"));
+        excludes = Collections.unmodifiableSet(new HashSet<>(Constraint.isNotNull(algorithms, "Exclusions may not be null")));
     }
 
     /** {@inheritDoc} */

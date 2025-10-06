@@ -97,7 +97,7 @@ public class StaticPKIXValidationInformationResolver implements PKIXValidationIn
     @Override
     @Nonnull public Set<String> resolveTrustedNames(@Nullable final CriteriaSet criteriaSet) throws ResolverException {
         if (criteriaSet == null) {
-            return ImmutableSet.copyOf(trustedNames);
+            return Collections.unmodifiableSet(new HashSet<>(trustedNames));
         }
         
         final HashSet<String> temp = new HashSet<>(trustedNames);
@@ -113,7 +113,7 @@ public class StaticPKIXValidationInformationResolver implements PKIXValidationIn
             }
         }
         
-        return ImmutableSet.copyOf(temp);
+        return Collections.unmodifiableSet(new HashSet<>(temp));
     }
 
     /** {@inheritDoc} */

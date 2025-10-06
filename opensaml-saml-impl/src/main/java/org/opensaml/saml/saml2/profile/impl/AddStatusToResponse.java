@@ -17,6 +17,7 @@
 
 package org.opensaml.saml.saml2.profile.impl;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -159,7 +160,7 @@ public class AddStatusToResponse extends AbstractProfileAction {
     public void setStatusCodes(@Nonnull @NonnullElements final List<String> codes) {
         ComponentSupport.ifInitializedThrowUnmodifiabledComponentException(this);
         
-        defaultStatusCodes = List.copyOf(Constraint.isNotNull(codes, "Status code list cannot be null"));
+        defaultStatusCodes = Collections.unmodifiableList(new ArrayList<>(Constraint.isNotNull(codes, "Status code list cannot be null")));
     }
     
     /**
@@ -299,7 +300,7 @@ public class AddStatusToResponse extends AbstractProfileAction {
             for (final Map.Entry<String,List<String>> entry : mappings.entrySet()) {
                 final String event = StringSupport.trimOrNull(entry.getKey());
                 if (event != null && entry.getValue() != null) {
-                    codeMappings.put(event, List.copyOf(entry.getValue()));
+                    codeMappings.put(event, Collections.unmodifiableList(new ArrayList<>(entry.getValue())));
                 }
             }
             

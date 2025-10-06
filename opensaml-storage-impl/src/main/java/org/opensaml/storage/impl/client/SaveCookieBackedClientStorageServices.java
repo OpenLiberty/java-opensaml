@@ -17,6 +17,7 @@
 
 package org.opensaml.storage.impl.client;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -82,7 +83,7 @@ public class SaveCookieBackedClientStorageServices
         
         Constraint.isNotNull(services, "StorageService collection cannot be null");
         storageServices = new HashMap<>(services.size());
-        for (final ClientStorageService ss : List.copyOf(services)) {
+        for (final ClientStorageService ss : Collections.unmodifiableList(new ArrayList<>(services))) {
             storageServices.put(ss.getId(), ss);
         }
     }

@@ -17,6 +17,8 @@
 
 package org.opensaml.security.x509.tls;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Nonnull;
@@ -43,7 +45,8 @@ public class ClientTLSValidationConfigurationCriterion implements Criterion {
      */
     public ClientTLSValidationConfigurationCriterion(@Nonnull @NonnullElements @NotEmpty final
             List<ClientTLSValidationConfiguration> configurations) {
-        configs = List.copyOf(Constraint.isNotNull(configurations, "List of configurations cannot be null"));
+    configs = Collections.unmodifiableList(new ArrayList<>(
+        Constraint.isNotNull(configurations, "List of configurations cannot be null")));
         Constraint.isNotEmpty(configs, "At least one configuration is required");
     }
     
@@ -54,7 +57,8 @@ public class ClientTLSValidationConfigurationCriterion implements Criterion {
      */
     public ClientTLSValidationConfigurationCriterion(@Nonnull @NonnullElements @NotEmpty final
             ClientTLSValidationConfiguration... configurations) {
-        configs = List.of(Constraint.isNotNull(configurations, "List of configurations cannot be null"));
+    configs = java.util.Collections.unmodifiableList(new java.util.ArrayList<>(
+        java.util.Arrays.asList(Constraint.isNotNull(configurations, "List of configurations cannot be null"))));
         Constraint.isNotEmpty(configs, "At least one configuration is required");
     }
     

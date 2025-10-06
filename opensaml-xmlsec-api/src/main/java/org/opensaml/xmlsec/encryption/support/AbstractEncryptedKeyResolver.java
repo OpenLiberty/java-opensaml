@@ -18,6 +18,7 @@
 package org.opensaml.xmlsec.encryption.support;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -56,7 +57,9 @@ public abstract class AbstractEncryptedKeyResolver implements EncryptedKeyResolv
      * @param newRecipents set of recipients
      */
     public AbstractEncryptedKeyResolver(@Nullable final Set<String> newRecipents) {
-        recipients = Set.copyOf(StringSupport.normalizeStringCollection(newRecipents));
+        recipients = Collections.unmodifiableSet(
+            new HashSet<>(StringSupport.normalizeStringCollection(newRecipents))
+        );
     }
 
     /** 

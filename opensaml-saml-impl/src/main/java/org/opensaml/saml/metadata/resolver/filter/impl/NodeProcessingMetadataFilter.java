@@ -18,6 +18,7 @@
 package org.opensaml.saml.metadata.resolver.filter.impl;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Nonnull;
@@ -69,7 +70,7 @@ public class NodeProcessingMetadataFilter extends AbstractInitializableComponent
         ComponentSupport.ifDestroyedThrowDestroyedComponentException(this);
         Constraint.isNotNull(newProcessors, "MetadataNodeProcessor list cannot be null");
 
-        processors = new ArrayList<>(List.copyOf(newProcessors));
+        processors = new ArrayList<>(Collections.unmodifiableList(new ArrayList<>(newProcessors)));
     }
 
     /** {@inheritDoc} */

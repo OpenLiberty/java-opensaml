@@ -17,6 +17,7 @@
 
 package org.opensaml.storage.impl.client;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -69,7 +70,7 @@ public class PopulateClientStorageSaveContext extends AbstractProfileAction {
     public void setStorageServices(@Nonnull @NonnullElements final Collection<ClientStorageService> services) {
         ComponentSupport.ifInitializedThrowUnmodifiabledComponentException(this);
         
-        storageServices = List.copyOf(Constraint.isNotNull(services, "StorageService collection cannot be null"));
+        storageServices = Collections.unmodifiableList(new ArrayList<>(Constraint.isNotNull(services, "StorageService collection cannot be null")));
     }
     
     /** {@inheritDoc} */

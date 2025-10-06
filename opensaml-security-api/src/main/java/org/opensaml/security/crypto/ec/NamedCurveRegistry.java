@@ -18,7 +18,9 @@
 package org.opensaml.security.crypto.ec;
 
 import java.security.spec.ECParameterSpec;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -168,7 +170,7 @@ public class NamedCurveRegistry {
      */
     @Nonnull @NonnullElements @Unmodifiable @NotLive
     public Set<NamedCurve> getRegisteredCurves() {
-        return Set.copyOf(byOID.values());
+        return Collections.unmodifiableSet(new HashSet<>(byOID.values()));
     }
     
     /**

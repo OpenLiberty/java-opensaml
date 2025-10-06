@@ -18,7 +18,9 @@
 package org.opensaml.saml.metadata.resolver.filter.impl;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -104,7 +106,7 @@ public class EntityAttributesFilter extends AbstractInitializableComponent imple
         applyMap = ArrayListMultimap.create(rules.size(), 1);
         for (final Map.Entry<Predicate<EntityDescriptor>,Collection<Attribute>> entry : rules.entrySet()) {
             if (entry.getKey() != null && entry.getValue() != null) {
-                applyMap.putAll(entry.getKey(), List.copyOf(entry.getValue()));
+                applyMap.putAll(entry.getKey(), Collections.unmodifiableList(new ArrayList<>(entry.getValue())));
             }
         }
     }

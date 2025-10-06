@@ -613,7 +613,7 @@ public abstract class AbstractDynamicMetadataResolver extends AbstractMetadataRe
         if (newIndexes == null) {
             indexes = Collections.emptySet();
         } else {
-            indexes = Set.copyOf(newIndexes);
+            indexes = Collections.unmodifiableSet(new HashSet<>(newIndexes));
         }
     }
     
@@ -1583,7 +1583,7 @@ public abstract class AbstractDynamicMetadataResolver extends AbstractMetadataRe
         @Nonnull @NonnullElements @Unmodifiable @NotLive
         public Set<String> getManagementDataEntityIDs() {
             synchronized (this) {
-                return Set.copyOf(mgmtDataMap.keySet());
+                return Collections.unmodifiableSet(new HashSet<>(mgmtDataMap.keySet()));
             }
         }
 

@@ -17,6 +17,9 @@
 
 package org.opensaml.xmlsec.agreement;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.annotation.Nonnull;
@@ -37,7 +40,12 @@ import org.opensaml.xmlsec.encryption.KeySize;
 public final class KeyAgreementSupport {
     
     /** JCA key algorithms that support key agreement. */
-    public static final Set<String> KEY_ALGORITHMS = Set.of(JCAConstants.KEY_ALGO_EC, JCAConstants.KEY_ALGO_DH);
+    public static final Set<String> KEY_ALGORITHMS = Collections.unmodifiableSet(
+                                                            new HashSet<>(Arrays.asList(
+                                                                JCAConstants.KEY_ALGO_EC,
+                                                                JCAConstants.KEY_ALGO_DH
+                                                            ))
+                                                        );
     
     /** Constructor. */
     private KeyAgreementSupport() {}

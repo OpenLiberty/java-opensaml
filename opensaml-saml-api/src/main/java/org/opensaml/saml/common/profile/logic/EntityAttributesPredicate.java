@@ -19,6 +19,7 @@ package org.opensaml.saml.common.profile.logic;
 
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -81,7 +82,7 @@ public class EntityAttributesPredicate implements Predicate<EntityDescriptor> {
     public EntityAttributesPredicate(
             @Nonnull @NonnullElements @ParameterName(name="candidates") final Collection<Candidate> candidates) {
         
-        candidateSet = List.copyOf(Constraint.isNotNull(candidates, "Candidate collection cannot be null"));
+        candidateSet = Collections.unmodifiableList(new ArrayList<>(Constraint.isNotNull(candidates, "Candidate collection cannot be null")));
         
         trimTags = true;
         matchAll = false;
@@ -97,7 +98,7 @@ public class EntityAttributesPredicate implements Predicate<EntityDescriptor> {
             @Nonnull @NonnullElements @ParameterName(name="candidates") final Collection<Candidate> candidates,
             @ParameterName(name="trim") final boolean trim) {
         
-        candidateSet = List.copyOf(Constraint.isNotNull(candidates, "Candidate collection cannot be null"));
+        candidateSet = Collections.unmodifiableList(new ArrayList<>(Constraint.isNotNull(candidates, "Candidate collection cannot be null")));
         
         trimTags = trim;
         matchAll = false;
@@ -115,7 +116,7 @@ public class EntityAttributesPredicate implements Predicate<EntityDescriptor> {
             @ParameterName(name="trim") final boolean trim,
             @ParameterName(name="all") final boolean all) {
         
-        candidateSet = List.copyOf(Constraint.isNotNull(candidates, "Candidate collection cannot be null"));
+        candidateSet = Collections.unmodifiableList(new ArrayList<>(Constraint.isNotNull(candidates, "Candidate collection cannot be null")));
         
         trimTags = trim;
         matchAll = all;
@@ -289,7 +290,7 @@ public class EntityAttributesPredicate implements Predicate<EntityDescriptor> {
          * @param vals the exact values to match
          */
         public void setValues(@Nonnull @NonnullElements final Collection<String> vals) {
-            values = List.copyOf(Constraint.isNotNull(vals, "Values collection cannot be null"));
+            values = Collections.unmodifiableList(new ArrayList<>(Constraint.isNotNull(vals, "Values collection cannot be null")));
         }
 
         /**
@@ -307,7 +308,7 @@ public class EntityAttributesPredicate implements Predicate<EntityDescriptor> {
          * @param exps the regular expressions to match
          */
         public void setRegexps(@Nonnull @NonnullElements final Collection<Pattern> exps) {
-            regexps = List.copyOf(Constraint.isNotNull(exps, "Regular expressions collection cannot be null"));
+            regexps = Collections.unmodifiableList(new ArrayList<>(Constraint.isNotNull(exps, "Regular expressions collection cannot be null")));
         }
     }
     
@@ -448,7 +449,7 @@ public class EntityAttributesPredicate implements Predicate<EntityDescriptor> {
                 }
             }
             if (toMatchAlt != null) {
-                return List.of(toMatch, toMatchAlt);
+                return Collections.unmodifiableList(Arrays.asList(toMatch, toMatchAlt));
             } else if (toMatch != null) {
                 return Collections.singletonList(toMatch);
             }

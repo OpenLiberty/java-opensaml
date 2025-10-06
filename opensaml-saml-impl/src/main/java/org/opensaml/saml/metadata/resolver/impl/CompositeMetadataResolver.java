@@ -18,6 +18,7 @@
 package org.opensaml.saml.metadata.resolver.impl;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -85,7 +86,7 @@ public class CompositeMetadataResolver extends AbstractIdentifiedInitializableCo
         if (newResolvers == null || newResolvers.isEmpty()) {
             resolvers = Collections.emptyList();
         } else {
-            resolvers = List.copyOf(newResolvers);
+            resolvers = Collections.unmodifiableList(new ArrayList<>(newResolvers));
         }
     }
 
@@ -272,7 +273,7 @@ public class CompositeMetadataResolver extends AbstractIdentifiedInitializableCo
          */
         public CompositeMetadataResolverIterable(final List<MetadataResolver> composedResolvers,
                 final CriteriaSet metadataCritiera) {
-            resolvers = List.copyOf(composedResolvers);
+            resolvers = Collections.unmodifiableList(new ArrayList<>(composedResolvers));
 
             criteria = metadataCritiera;
         }

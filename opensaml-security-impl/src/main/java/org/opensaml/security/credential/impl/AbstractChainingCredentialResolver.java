@@ -17,6 +17,8 @@
 
 package org.opensaml.security.credential.impl;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -58,7 +60,7 @@ public abstract class AbstractChainingCredentialResolver<ResolverType extends Cr
      * @param credResolvers the list of chained credential resolvers
      */
     public AbstractChainingCredentialResolver(@Nonnull @NonnullElements final List<ResolverType> credResolvers) {
-        resolvers = List.copyOf(Constraint.isNotNull(credResolvers, "CredentialResolver list cannot be null"));
+        resolvers = Collections.unmodifiableList(new ArrayList<>(Constraint.isNotNull(credResolvers, "CredentialResolver list cannot be null")));
     }
 
     /**

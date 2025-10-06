@@ -20,6 +20,7 @@ package org.opensaml.saml.metadata.resolver.impl;
 import java.time.Instant;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Optional;
 import java.util.Set;
@@ -124,7 +125,7 @@ public abstract class AbstractBatchMetadataResolver extends AbstractMetadataReso
         if (newIndexes == null) {
             indexes = Collections.emptySet();
         } else {
-            indexes = Set.copyOf(newIndexes);
+            indexes = Collections.unmodifiableSet(new HashSet<>(newIndexes));
         }
     }
 

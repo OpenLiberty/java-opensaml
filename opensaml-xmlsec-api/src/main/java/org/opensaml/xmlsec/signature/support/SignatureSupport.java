@@ -17,6 +17,9 @@
 
 package org.opensaml.xmlsec.signature.support;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -50,14 +53,14 @@ public final class SignatureSupport {
     @Nonnull private static final Logger LOG = LoggerFactory.getLogger(SignatureSupport.class);
     
     /** Set of known canonicalization algorithm URIs. */
-    @Nonnull @NonnullElements private static final Set<String> C14N_ALGORITHMS = Set.of(
+    @Nonnull @NonnullElements private static final Set<String> C14N_ALGORITHMS = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
             SignatureConstants.ALGO_ID_C14N11_OMIT_COMMENTS,
             SignatureConstants.ALGO_ID_C14N11_WITH_COMMENTS,
             SignatureConstants.ALGO_ID_C14N_EXCL_OMIT_COMMENTS,
             SignatureConstants.ALGO_ID_C14N_EXCL_WITH_COMMENTS,
             SignatureConstants.ALGO_ID_C14N_OMIT_COMMENTS,
             SignatureConstants.ALGO_ID_C14N_WITH_COMMENTS
-            );
+            )));
     
     /** Constructor. */
     private SignatureSupport() {

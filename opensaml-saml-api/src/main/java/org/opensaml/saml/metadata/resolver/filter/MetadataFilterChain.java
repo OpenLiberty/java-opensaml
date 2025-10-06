@@ -18,6 +18,7 @@
 package org.opensaml.saml.metadata.resolver.filter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Nonnull;
@@ -94,7 +95,7 @@ public class MetadataFilterChain implements MetadataFilter {
     public void setFilters(@Nonnull @NonnullElements final List<MetadataFilter> newFilters) {
         Constraint.isNotNull(newFilters, "Filter collection cannot be null");
         
-        filters = new ArrayList<>(List.copyOf(newFilters));
+        filters = new ArrayList<>(Collections.unmodifiableList(new ArrayList<>(newFilters)));
     }
     
 }

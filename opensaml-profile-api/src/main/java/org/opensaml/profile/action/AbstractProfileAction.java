@@ -89,10 +89,11 @@ public abstract class AbstractProfileAction extends AbstractInitializableCompone
         if (request != null && !(request instanceof ThreadLocalHttpServletRequestProxy)) {
             log.warn("Unsafe HttpServletRequest injected");
         }
-        httpServletRequestSupplier = new NonnullSupplier<>() {
+        httpServletRequestSupplier = new NonnullSupplier<HttpServletRequest>() {
+            @Override
             public HttpServletRequest get() {
                 return request;
-            };
+            }
         };
     }
 
@@ -140,10 +141,11 @@ public abstract class AbstractProfileAction extends AbstractInitializableCompone
         if (response != null && !(response instanceof ThreadLocalHttpServletResponseProxy)) {
             log.warn("Unsafe HttpServletRequest injected");
         }
-        httpServletResponseSupplier = new NonnullSupplier<>() {
+        httpServletResponseSupplier = new NonnullSupplier<HttpServletResponse>() {
+            @Override
             public HttpServletResponse get() {
                 return response;
-            };
+            }
         };
     }
 

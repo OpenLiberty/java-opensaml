@@ -79,7 +79,7 @@ public class EntityRoleFilter implements MetadataFilter {
      */
     public EntityRoleFilter(@Nullable @NonnullElements @ParameterName(name="keptRoles") final List<QName> keptRoles) {
         if (keptRoles != null) {
-            retainedRoles = List.copyOf(keptRoles);
+            retainedRoles = Collections.unmodifiableList(new ArrayList<>(keptRoles));
         } else {
             retainedRoles = Collections.emptyList();
         }

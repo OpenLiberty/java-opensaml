@@ -91,7 +91,7 @@ public class BasicSignatureSigningConfiguration extends BasicWhitelistBlacklistC
         if (credentials == null) {
             signingCredentials = Collections.emptyList();
         } else {
-            signingCredentials = List.copyOf(credentials);
+            signingCredentials = Collections.unmodifiableList(new ArrayList<>(credentials));
         }
     }
     
@@ -110,7 +110,7 @@ public class BasicSignatureSigningConfiguration extends BasicWhitelistBlacklistC
         if (algorithms == null) {
             signatureAlgorithms = Collections.emptyList();
         } else {
-            signatureAlgorithms = List.copyOf(StringSupport.normalizeStringCollection(algorithms));
+            signatureAlgorithms = Collections.unmodifiableList(new ArrayList<>(StringSupport.normalizeStringCollection(algorithms)));
         }
     }
     
@@ -129,7 +129,7 @@ public class BasicSignatureSigningConfiguration extends BasicWhitelistBlacklistC
         if (algorithms == null) {
             signatureReferenceDigestMethods = Collections.emptyList();
         } else {
-            signatureReferenceDigestMethods = List.copyOf(StringSupport.normalizeStringCollection(algorithms));
+            signatureReferenceDigestMethods = Collections.unmodifiableList(new ArrayList<>(StringSupport.normalizeStringCollection(algorithms)));
         }
     }
     

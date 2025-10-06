@@ -17,6 +17,7 @@
 
 package org.opensaml.messaging.handler.impl;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Nonnull;
@@ -83,8 +84,7 @@ public class MessageHandlerErrorStrategyAdapter extends AbstractMessageHandler {
     public MessageHandlerErrorStrategyAdapter(@Nonnull final MessageHandler messageHandler, 
             @Nonnull @NonnullElements final List<TypedMessageErrorHandler> typedErrorHandlers) {
         wrappedHandler = Constraint.isNotNull(messageHandler, "Wrapped MessageHandler cannot be null");
-        errorHandlers = List.copyOf(
-                Constraint.isNotNull(typedErrorHandlers, "List of TypedMessageErroHandlers cannot be null"));
+        errorHandlers = Collections.unmodifiableList(Constraint.isNotNull(typedErrorHandlers, "List of TypedMessageErroHandlers cannot be null"));
         
         rethrowIfHandled = false;
         rethrowIfNotHandled = true;

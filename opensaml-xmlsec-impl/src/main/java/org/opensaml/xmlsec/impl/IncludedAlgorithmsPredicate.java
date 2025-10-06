@@ -18,6 +18,8 @@
 package org.opensaml.xmlsec.impl;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -42,7 +44,7 @@ public class IncludedAlgorithmsPredicate implements Predicate<String> {
      * @param algorithms collection of included algorithms
      */
     public IncludedAlgorithmsPredicate(@Nonnull final Collection<String> algorithms) {
-        includes = Set.copyOf(Constraint.isNotNull(algorithms, "Inclusions may not be null"));
+        includes = Collections.unmodifiableSet(new HashSet<>(Constraint.isNotNull(algorithms, "Inclusions may not be null")));
     }
 
     /** {@inheritDoc} */

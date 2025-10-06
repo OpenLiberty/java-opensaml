@@ -17,6 +17,8 @@
 
 package org.opensaml.xmlsec.signature.support.impl;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Nonnull;
@@ -49,7 +51,7 @@ public class ChainingSignaturePrevalidator implements SignaturePrevalidator {
      */
     public ChainingSignaturePrevalidator(@Nonnull @NonnullElements @ParameterName(name="validatorChain") 
                                                       final List<SignaturePrevalidator> validatorChain) {
-        validators = List.copyOf(Constraint.isNotNull(validatorChain, "SignaturePrevalidator list cannot be null"));
+        validators = Collections.unmodifiableList(new ArrayList<>(Constraint.isNotNull(validatorChain, "SignaturePrevalidator list cannot be null")));
     }
 
     /** {@inheritDoc} */

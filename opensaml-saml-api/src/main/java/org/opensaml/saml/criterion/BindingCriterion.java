@@ -17,6 +17,8 @@
 
 package org.opensaml.saml.criterion;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Nonnull;
@@ -39,7 +41,7 @@ public final class BindingCriterion implements Criterion {
      * @param bindingURIs list of SAML binding URIs
      */
     public BindingCriterion(@Nonnull @NonnullElements final List<String> bindingURIs) {
-        bindings = List.copyOf(StringSupport.normalizeStringCollection(bindingURIs));
+        bindings = Collections.unmodifiableList(new ArrayList<>(StringSupport.normalizeStringCollection(bindingURIs)));
     }
 
     /**

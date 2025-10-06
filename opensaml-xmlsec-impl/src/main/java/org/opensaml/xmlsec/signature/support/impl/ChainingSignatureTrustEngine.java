@@ -17,6 +17,8 @@
 
 package org.opensaml.xmlsec.signature.support.impl;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Nonnull;
@@ -56,7 +58,7 @@ public class ChainingSignatureTrustEngine implements SignatureTrustEngine {
      */
     public ChainingSignatureTrustEngine(
             @Nonnull @NonnullElements @ParameterName(name="chain") final List<SignatureTrustEngine> chain) {
-        engines = List.copyOf(Constraint.isNotNull(chain, "SignatureTrustEngine list cannot be null"));
+        engines = Collections.unmodifiableList(new ArrayList<>(Constraint.isNotNull(chain, "SignatureTrustEngine list cannot be null")));
     }
 
     /**

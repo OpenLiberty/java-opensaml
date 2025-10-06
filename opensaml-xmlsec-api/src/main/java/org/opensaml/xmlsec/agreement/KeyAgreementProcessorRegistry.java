@@ -17,7 +17,9 @@
 
 package org.opensaml.xmlsec.agreement;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -79,7 +81,7 @@ public class KeyAgreementProcessorRegistry {
      * @return the set of registered algorithms
      */
     @Nonnull public Set<String> getRegisteredAlgorithms() {
-        return Set.copyOf(processors.keySet());
+        return Collections.unmodifiableSet(new HashSet<>(processors.keySet()));
     }
     
     /**

@@ -17,6 +17,7 @@
 
 package org.opensaml.xmlsec.encryption.support;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -57,7 +58,7 @@ public class ChainingEncryptedKeyResolver extends AbstractEncryptedKeyResolver {
     public ChainingEncryptedKeyResolver(
             @Nonnull @NonnullElements @ParameterName(name="encKeyResolvers")
             final List<EncryptedKeyResolver> encKeyResolvers) {
-        resolvers = List.copyOf(Constraint.isNotNull(encKeyResolvers, "List of EncryptedKeyResolvers cannot be null"));
+        resolvers = Collections.unmodifiableList(new ArrayList<>(Constraint.isNotNull(encKeyResolvers, "List of EncryptedKeyResolvers cannot be null")));
     }
 
     /** 
@@ -71,7 +72,7 @@ public class ChainingEncryptedKeyResolver extends AbstractEncryptedKeyResolver {
             final List<EncryptedKeyResolver> encKeyResolvers,
             @Nullable @ParameterName(name="recipients") final Set<String> recipients) {
         super(recipients);
-        resolvers = List.copyOf(Constraint.isNotNull(encKeyResolvers, "List of EncryptedKeyResolvers cannot be null"));
+        resolvers = Collections.unmodifiableList(new ArrayList<>(Constraint.isNotNull(encKeyResolvers, "List of EncryptedKeyResolvers cannot be null")));
     }
     
     /** 

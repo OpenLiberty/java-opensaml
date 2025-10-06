@@ -17,6 +17,7 @@
 
 package org.opensaml.messaging.handler.impl;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -66,7 +67,7 @@ public class BasicMessageHandlerChain extends AbstractMessageHandler
      */
     public void setHandlers(@Nullable @NonnullElements final List<MessageHandler> handlers) {
         if (handlers != null) {
-            members = List.copyOf(handlers);
+            members = Collections.unmodifiableList(new ArrayList<>(handlers));
         } else {
             members = Collections.emptyList();
         }

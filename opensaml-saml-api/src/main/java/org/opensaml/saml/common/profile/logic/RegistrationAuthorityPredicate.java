@@ -18,6 +18,8 @@
 package org.opensaml.saml.common.profile.logic;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.annotation.Nonnull;
@@ -46,7 +48,7 @@ public class RegistrationAuthorityPredicate  extends AbstractRegistrationInfoPre
      * @param names the authority names to test for
      */
     public RegistrationAuthorityPredicate(@Nullable@ParameterName(name="names") final Collection<String> names) {
-        authorities = Set.copyOf(StringSupport.normalizeStringCollection(names));
+        authorities = Collections.unmodifiableSet(new HashSet<>());
     }
 
     /**

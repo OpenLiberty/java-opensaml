@@ -17,6 +17,7 @@
 
 package org.opensaml.profile.logic;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -65,7 +66,7 @@ public class IPRangePredicate implements Predicate<BaseContext> {
     public void setRanges(@Nonnull @NonnullElements final Collection<IPRange> ranges) {
         Constraint.isNotNull(ranges, "Address range collection cannot be null");
         
-        addressRanges = List.copyOf(ranges);
+        addressRanges = Collections.unmodifiableList(new ArrayList<>(ranges));
     }
 
     /**

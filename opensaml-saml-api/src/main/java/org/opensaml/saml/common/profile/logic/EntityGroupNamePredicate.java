@@ -19,6 +19,8 @@ package org.opensaml.saml.common.profile.logic;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.annotation.Nonnull;
@@ -80,7 +82,7 @@ public class EntityGroupNamePredicate implements Predicate<EntityDescriptor> {
     public EntityGroupNamePredicate(@Nullable @ParameterName(name="names") final Collection<String> names,
             @Nullable @ParameterName(name="resolver") final MetadataResolver resolver) {
         
-        groupNames = Set.copyOf(StringSupport.normalizeStringCollection(names));
+        groupNames = Collections.unmodifiableSet(new HashSet<>(StringSupport.normalizeStringCollection(names)));
         
         metadataResolver = resolver;
         if (resolver != null) {

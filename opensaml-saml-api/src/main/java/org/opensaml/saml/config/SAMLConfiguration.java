@@ -17,6 +17,7 @@
 
 package org.opensaml.saml.config;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
@@ -63,7 +64,7 @@ public class SAMLConfiguration {
      *
      */
     public SAMLConfiguration() {
-        setAllowedBindingURLSchemes(List.of("http", "https"));
+        setAllowedBindingURLSchemes(Collections.unmodifiableList(Arrays.asList("http", "https")));
     }
 
     /**
@@ -138,10 +139,12 @@ public class SAMLConfiguration {
         if (schemes == null || schemes.isEmpty()) {
             allowedBindingURLSchemes = Collections.emptyList();
         } else {
-            allowedBindingURLSchemes = StringSupport.normalizeStringCollection(schemes)
+            allowedBindingURLSchemes = Collections.unmodifiableList(
+                StringSupport.normalizeStringCollection(schemes)
                     .stream()
                     .map(lowercaseFunction::apply)
-                    .collect(Collectors.toUnmodifiableList());
+                    .collect(Collectors.toList())
+            );
         }
     }
     

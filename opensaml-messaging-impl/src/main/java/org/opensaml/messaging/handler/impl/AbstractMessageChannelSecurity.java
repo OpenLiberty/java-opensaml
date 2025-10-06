@@ -49,7 +49,7 @@ public abstract class AbstractMessageChannelSecurity extends AbstractMessageHand
     /** Constructor. */
     public AbstractMessageChannelSecurity() {
         //TODO this just returns the input MC - need better default?
-        parentContextLookupStrategy = new Function<>() {
+        parentContextLookupStrategy = new Function<MessageContext, BaseContext>() {
             @Nullable public BaseContext apply(@Nullable final MessageContext input) {
                 return input;
             }

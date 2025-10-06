@@ -17,6 +17,8 @@
 
 package org.opensaml.saml.metadata.resolver.impl;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.Function;
 
@@ -127,7 +129,7 @@ public class MetadataQueryProtocolRequestURLBuilder implements Function<Criteria
         transformer = transform;
         
         if (secondaryURLBuilders != null) {
-            urlBuilders = List.copyOf(secondaryURLBuilders);
+            urlBuilders = Collections.unmodifiableList(new ArrayList<>(secondaryURLBuilders));
         }
     }
 

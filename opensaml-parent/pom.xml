@@ -51,6 +51,7 @@
         <java-support.version>8.4.2</java-support.version>
         <spring-extensions.version>6.3.2</spring-extensions.version>
         <checkstyle.configLocation>${project.basedir}/../opensaml-parent/resources/checkstyle/checkstyle.xml</checkstyle.configLocation>
+        <maven.compiler.release>8</maven.compiler.release>
     </properties>
 
     <!-- Dependencies which are required by every single project module should go here and will be inherited by all modules. -->
@@ -129,6 +130,31 @@
     </dependencyManagement>
 
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.14.0</version>
+                    <configuration>
+                        <release>${maven.compiler.release}</release>
+                    </configuration>
+                    <!-- Skip compiling tests -->
+                    <executions>
+                        <execution>
+                        <id>default-testCompile</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>testCompile</goal>
+                        </goals>
+                        <configuration>
+                            <skip>true</skip>
+                        </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>net.shibboleth.maven.plugins</groupId>

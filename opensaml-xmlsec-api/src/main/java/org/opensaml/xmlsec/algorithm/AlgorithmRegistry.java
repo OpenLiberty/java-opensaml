@@ -216,7 +216,7 @@ public class AlgorithmRegistry {
         Constraint.isNotNull(type, "AlgorithmType was null");
         final Set<String> byType = types.get(type);
         if (byType != null) {
-            return Set.copyOf(byType);
+            return Collections.unmodifiableSet(new HashSet<>(byType));
         }
         return Collections.emptySet();
     }
@@ -230,10 +230,12 @@ public class AlgorithmRegistry {
      */
     @Nonnull @NonnullElements @Unmodifiable @NotLive
     public Set<AlgorithmDescriptor> getRegisteredByType(@Nonnull final AlgorithmType type) {
-        return getRegisteredURIsByType(type).stream()
+        return Collections.unmodifiableSet(
+            getRegisteredURIsByType(type).stream()
                 .map(this::get)
                 .filter(Objects::nonNull)
-                .collect(Collectors.toUnmodifiableSet());
+                .collect(Collectors.toSet())
+        );
     }
 
     /**

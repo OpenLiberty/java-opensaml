@@ -17,6 +17,7 @@
 
 package org.opensaml.storage.impl.client;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -106,7 +107,7 @@ public class LoadClientStorageServices extends AbstractProfileAction {
         
         Constraint.isNotNull(services, "StorageService collection cannot be null");
         storageServices = new HashMap<>(services.size());
-        for (final ClientStorageService ss : List.copyOf(services)) {
+        for (final ClientStorageService ss : Collections.unmodifiableList(new ArrayList<>(services))) {
             storageServices.put(ss.getStorageName(), ss);
         }
     }
@@ -195,7 +196,7 @@ public class LoadClientStorageServices extends AbstractProfileAction {
             storageService.load(null, source);
         } else {
             log.debug("{} Initializing StorageService '{}' from cookie", getLogPrefix(), storageService.getId());
-            storageService.load(URISupport.doURLDecode(cookie.orElseThrow().getValue()), source);
+            storageService.load(URISupport.doURLDecode(cookie.isPresent() ? cookie.get().getValue() : null), source);
         }
     }
  

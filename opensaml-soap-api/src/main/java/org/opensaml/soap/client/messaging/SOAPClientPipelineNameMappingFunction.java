@@ -17,6 +17,8 @@
 
 package org.opensaml.soap.client.messaging;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
@@ -74,7 +76,7 @@ public class SOAPClientPipelineNameMappingFunction<T> implements Function<Messag
             @Nullable @ParameterName(name="lookupStrategy") 
                 final ContextDataLookupFunction<MessageContext, SOAPClientContext> lookupStrategy) {
         
-        delegateMap = Map.copyOf(Constraint.isNotNull(mappings, "Delegate mappings may not be null"));
+        delegateMap = Collections.unmodifiableMap(new HashMap<>(Constraint.isNotNull(mappings, "Delegate mappings may not be null")));
         
         if (lookupStrategy != null) {
             soapClientContextLookup = lookupStrategy;

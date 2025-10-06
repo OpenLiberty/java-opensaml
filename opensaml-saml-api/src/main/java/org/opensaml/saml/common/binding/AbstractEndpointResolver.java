@@ -306,11 +306,16 @@ public abstract class AbstractEndpointResolver<EndpointType extends Endpoint>
         final List<EndpointType> sortedResults = new ArrayList<>(endpoints.size());
         for (final String binding : bindingCriterion.getBindings()) {
             sortedResults.addAll(
-                    sortCandidates(
-                            endpoints.stream()
-                                .filter(ep -> binding.equals(ep.getBinding()))
-                                .collect(Collectors.toUnmodifiableList())));
+                sortCandidates(
+                    Collections.unmodifiableList(
+                        endpoints.stream()
+                            .filter(ep -> binding.equals(ep.getBinding()))
+                            .collect(Collectors.toList())
+                    )
+                )
+            );
         }
+
         log.debug("{} Returning {} candidate endpoints of type {}", getLogPrefix(), sortedResults.size(),
                 endpointType);
         return sortedResults;

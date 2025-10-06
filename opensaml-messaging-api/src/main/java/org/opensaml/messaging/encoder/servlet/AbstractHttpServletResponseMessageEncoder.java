@@ -84,7 +84,7 @@ public abstract class AbstractHttpServletResponseMessageEncoder extends Abstract
         if (response != null && !(response instanceof ThreadLocalHttpServletResponseProxy)) {
             log.warn("Unsafe HttpServletRequest injected");
         }
-        httpServletResponseSupplier = new NonnullSupplier<>() {
+        httpServletResponseSupplier = new NonnullSupplier<HttpServletResponse>() {
             public HttpServletResponse get() {
                 return response;
             };

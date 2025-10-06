@@ -18,6 +18,7 @@
 package org.opensaml.security.x509;
 
 import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import javax.annotation.Nonnull;
@@ -68,7 +69,8 @@ public class TrustedNamesCriterion implements Criterion {
             return;
         }
         
-        trustedNames = Set.copyOf(StringSupport.normalizeStringCollection(names));
+    trustedNames = Collections.unmodifiableSet(new LinkedHashSet<>(
+        StringSupport.normalizeStringCollection(names)));
     }
     
     /** {@inheritDoc} */

@@ -90,7 +90,7 @@ public class MetadataIndexManager<T> {
      */
     @Nonnull @NonnullElements @Unmodifiable @NotLive 
     public Set<MetadataIndex> getIndexes() {
-        return Set.copyOf(indexes.keySet());
+        return Collections.unmodifiableSet(new HashSet<>(indexes.keySet()));
     }
     
     /**

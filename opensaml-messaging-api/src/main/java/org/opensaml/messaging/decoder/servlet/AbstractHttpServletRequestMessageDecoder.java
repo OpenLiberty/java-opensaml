@@ -72,7 +72,7 @@ public abstract class AbstractHttpServletRequestMessageDecoder extends AbstractM
         if (request != null && !(request instanceof ThreadLocalHttpServletRequestProxy)) {
             log.warn("Unsafe HttpServletRequest injected");
         }
-        httpServletRequestSupplier = new NonnullSupplier<>() {
+        httpServletRequestSupplier = new NonnullSupplier<HttpServletRequest>() {
             public HttpServletRequest get() {
                 return request;
             };

@@ -23,6 +23,9 @@ import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -69,7 +72,7 @@ public class HTTPRedirectDeflateEncoder extends BaseSAML2MessageEncoder {
     
     /** Params which are disallowed from appearing in the input endpoint URL. */
     @Nonnull @NonnullElements private static final Set<String> DISALLOWED_ENDPOINT_QUERY_PARAMS = 
-            Set.of("SAMLEncoding", "SAMLRequest", "SAMLResponse", "RelayState", "SigAlg", "Signature");
+            Collections.unmodifiableSet(new HashSet<>(Arrays.asList("SAMLEncoding", "SAMLRequest", "SAMLResponse", "RelayState", "SigAlg", "Signature")));
 
     /** Class logger. */
     private final Logger log = LoggerFactory.getLogger(HTTPRedirectDeflateEncoder.class);

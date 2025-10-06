@@ -18,8 +18,10 @@
 package org.opensaml.xmlsec.config.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
@@ -98,15 +100,15 @@ public class DefaultSecurityConfigurationBootstrap {
                 EncryptionConstants.ALGO_ID_KEYTRANSPORT_RSA15
                 ));
         
-        config.setDataEncryptionAlgorithms(List.of(
+        config.setDataEncryptionAlgorithms(Collections.unmodifiableList(Arrays.asList(
                 // The order of these is significant.
                 EncryptionConstants.ALGO_ID_BLOCKCIPHER_AES128,
                 EncryptionConstants.ALGO_ID_BLOCKCIPHER_AES192,
                 EncryptionConstants.ALGO_ID_BLOCKCIPHER_AES256,
                 EncryptionConstants.ALGO_ID_BLOCKCIPHER_TRIPLEDES
-                ));
+                )));
         
-        config.setKeyTransportEncryptionAlgorithms(List.of(
+        config.setKeyTransportEncryptionAlgorithms(Collections.unmodifiableList(Arrays.asList(
                 // The order of the RSA algos is significant.
                 EncryptionConstants.ALGO_ID_KEYTRANSPORT_RSAOAEP,
                 
@@ -117,7 +119,7 @@ public class DefaultSecurityConfigurationBootstrap {
                 EncryptionConstants.ALGO_ID_KEYWRAP_AES192,
                 EncryptionConstants.ALGO_ID_KEYWRAP_AES256,
                 EncryptionConstants.ALGO_ID_KEYWRAP_TRIPLEDES
-                ));
+                )));
         
         config.setRSAOAEPParameters(new RSAOAEPParameters(
                 SignatureConstants.ALGO_ID_DIGEST_SHA1, 
@@ -159,11 +161,11 @@ public class DefaultSecurityConfigurationBootstrap {
                 ecConcatKDF.setPartyUInfo("00");
                 ecConcatKDF.setPartyVInfo("00");
                 ecConcatKDF.initialize();
-                ecConfig.setParameters(Set.of(ecConcatKDF));
+                ecConfig.setParameters(Collections.unmodifiableSet(new HashSet<>(Arrays.asList(ecConcatKDF))));
             } else if (PBKDF2.equals(ecKDF)) {
                 final PBKDF2 ecPBKDF2 = new PBKDF2();
                 ecPBKDF2.initialize();
-                ecConfig.setParameters(Set.of(ecPBKDF2));
+                ecConfig.setParameters(Collections.unmodifiableSet(new HashSet<>(Arrays.asList(ecPBKDF2))));
             } else {
                 LOG.warn("Saw unknown value for ECDH KDF '{}', omitting global ECDH KDF configuration", ecKDF);
                 ecConfig.setParameters(Collections.emptySet());
@@ -179,7 +181,7 @@ public class DefaultSecurityConfigurationBootstrap {
             final KANonce nonce = new KANonce();
             // This will use an auto-generated nonce value each time
             nonce.initialize();
-            dhConfig.setParameters(Set.of(digestMethod, nonce));
+            dhConfig.setParameters(Collections.unmodifiableSet(new HashSet<>(Arrays.asList(digestMethod, nonce))));
             kaConfigs.put(JCAConstants.KEY_ALGO_DH, dhConfig);
             
         } catch (final ComponentInitializationException e) {
@@ -214,13 +216,13 @@ public class DefaultSecurityConfigurationBootstrap {
     @Nonnull public static BasicSignatureSigningConfiguration buildDefaultSignatureSigningConfiguration() {
         final BasicSignatureSigningConfiguration config = new BasicSignatureSigningConfiguration();
         
-        config.setExcludedAlgorithms(List.of(
+        config.setExcludedAlgorithms(Collections.unmodifiableList(Arrays.asList(
                 SignatureConstants.ALGO_ID_DIGEST_NOT_RECOMMENDED_MD5,
                 SignatureConstants.ALGO_ID_SIGNATURE_NOT_RECOMMENDED_RSA_MD5,
                 SignatureConstants.ALGO_ID_MAC_HMAC_NOT_RECOMMENDED_MD5
-                ));
+                )));
         
-        config.setSignatureAlgorithms(List.of(
+        config.setSignatureAlgorithms(Collections.unmodifiableList(Arrays.asList(
                 // The order within each key group is significant.
                 // The order of the key groups themselves is not significant.
                 
@@ -244,15 +246,15 @@ public class DefaultSecurityConfigurationBootstrap {
                 SignatureConstants.ALGO_ID_MAC_HMAC_SHA384,
                 SignatureConstants.ALGO_ID_MAC_HMAC_SHA512,
                 SignatureConstants.ALGO_ID_MAC_HMAC_SHA1
-                ));
+                )));
         
-        config.setSignatureReferenceDigestMethods(List.of(
+        config.setSignatureReferenceDigestMethods(Collections.unmodifiableList(Arrays.asList(
                 // The order of these is significant.
                 SignatureConstants.ALGO_ID_DIGEST_SHA256,
                 SignatureConstants.ALGO_ID_DIGEST_SHA384,
                 SignatureConstants.ALGO_ID_DIGEST_SHA512,
                 SignatureConstants.ALGO_ID_DIGEST_SHA1
-                ));
+                )));
         
         config.setSignatureCanonicalizationAlgorithm(SignatureConstants.ALGO_ID_C14N_EXCL_OMIT_COMMENTS);
         
@@ -269,11 +271,11 @@ public class DefaultSecurityConfigurationBootstrap {
     @Nonnull public static BasicSignatureValidationConfiguration buildDefaultSignatureValidationConfiguration() {
         final BasicSignatureValidationConfiguration config = new BasicSignatureValidationConfiguration();
         
-        config.setExcludedAlgorithms(List.of(
+        config.setExcludedAlgorithms(Collections.unmodifiableList(Arrays.asList(
                 SignatureConstants.ALGO_ID_DIGEST_NOT_RECOMMENDED_MD5,
                 SignatureConstants.ALGO_ID_SIGNATURE_NOT_RECOMMENDED_RSA_MD5,
                 SignatureConstants.ALGO_ID_MAC_HMAC_NOT_RECOMMENDED_MD5
-                ));
+                )));
         
         return config;
     }

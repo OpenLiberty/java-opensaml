@@ -19,6 +19,7 @@ package org.opensaml.xmlsec;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.annotation.Nonnull;
@@ -65,7 +66,7 @@ public class AlgorithmPolicyParameters {
             includedAlgorithmURIs = Collections.emptySet();
             return;
         }
-        includedAlgorithmURIs = Set.copyOf(StringSupport.normalizeStringCollection(uris));
+        includedAlgorithmURIs = Collections.unmodifiableSet(new HashSet<>(StringSupport.normalizeStringCollection(uris)));
     }
     
     /**
@@ -87,7 +88,7 @@ public class AlgorithmPolicyParameters {
             excludedAlgorithmURIs = Collections.emptySet();
             return;
         }
-        excludedAlgorithmURIs = Set.copyOf(StringSupport.normalizeStringCollection(uris));
+        excludedAlgorithmURIs = Collections.unmodifiableSet(new HashSet<>(StringSupport.normalizeStringCollection(uris)));
     }
     
 }

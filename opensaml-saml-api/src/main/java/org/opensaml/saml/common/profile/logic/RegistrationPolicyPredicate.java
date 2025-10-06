@@ -18,6 +18,8 @@
 package org.opensaml.saml.common.profile.logic;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.annotation.Nonnull;
@@ -47,7 +49,7 @@ public class RegistrationPolicyPredicate extends AbstractRegistrationInfoPredica
      * @param policies the policies to test for
      */
     public RegistrationPolicyPredicate(@Nullable @ParameterName(name="policies") final Collection<String> policies) {
-        policySet = Set.copyOf(StringSupport.normalizeStringCollection(policies));
+        policySet = Collections.unmodifiableSet(new HashSet<>());
     }
 
     /**

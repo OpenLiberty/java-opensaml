@@ -291,8 +291,20 @@ public final class AnnotationSupport {
         if (field == null) {
             try {
                 field = targetClass.getDeclaredField(fieldName);
-                if (!(field.canAccess(target) || field.trySetAccessible())) {
-                  throw new IllegalStateException("Field " + field + " is not accessible and cannot be mutated");
+                // Use Java 8 compatible APIs isAccessible/setAccessible
+                boolean accessible = false;
+                try {
+                    if (field.isAccessible()) {
+                        accessible = true;
+                    } else {
+                        field.setAccessible(true);
+                        accessible = true;
+                    }
+                } catch (final SecurityException e) {
+                    accessible = field.isAccessible();
+                }
+                if (!accessible) {
+                    throw new IllegalStateException("Field " + field + " is not accessible and cannot be mutated");
                 }
                 FIELD_CACHE.put(key, field);
             } catch (final NoSuchFieldException e) {

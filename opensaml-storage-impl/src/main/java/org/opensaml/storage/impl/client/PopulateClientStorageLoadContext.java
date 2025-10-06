@@ -70,7 +70,7 @@ public class PopulateClientStorageLoadContext extends AbstractProfileAction {
     public void setStorageServices(@Nonnull @NonnullElements final Collection<ClientStorageService> services) {
         ComponentSupport.ifInitializedThrowUnmodifiabledComponentException(this);
         
-        storageServices = List.copyOf(Constraint.isNotNull(services, "StorageService collection cannot be null"));
+        storageServices = Collections.unmodifiableList(new ArrayList<>(Constraint.isNotNull(services, "StorageService collection cannot be null")));
     }
     
     /** {@inheritDoc} */

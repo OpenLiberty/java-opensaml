@@ -17,7 +17,9 @@
 
 package org.opensaml.xmlsec.impl;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -109,7 +111,7 @@ public class BasicEncryptionConfiguration extends BasicWhitelistBlacklistConfigu
         if (credentials == null) {
             dataEncryptionCredentials  = Collections.emptyList();
         } else {
-            dataEncryptionCredentials = List.copyOf(credentials);
+            dataEncryptionCredentials = Collections.unmodifiableList(new ArrayList<>(credentials));
         }
     }
     
@@ -128,7 +130,7 @@ public class BasicEncryptionConfiguration extends BasicWhitelistBlacklistConfigu
         if (algorithms == null) {
             dataEncryptionAlgorithms = Collections.emptyList();
         } else {
-            dataEncryptionAlgorithms = List.copyOf(StringSupport.normalizeStringCollection(algorithms));
+            dataEncryptionAlgorithms = Collections.unmodifiableList(new ArrayList<>(StringSupport.normalizeStringCollection(algorithms)));
         }
     }
     
@@ -147,7 +149,7 @@ public class BasicEncryptionConfiguration extends BasicWhitelistBlacklistConfigu
         if (credentials == null) {
             keyTransportEncryptionCredentials  = Collections.emptyList();
         } else {
-            keyTransportEncryptionCredentials = List.copyOf(credentials);
+            keyTransportEncryptionCredentials = Collections.unmodifiableList(new ArrayList<>(credentials));
         }
     }
     
@@ -166,7 +168,7 @@ public class BasicEncryptionConfiguration extends BasicWhitelistBlacklistConfigu
         if (algorithms == null) {
             keyTransportEncryptionAlgorithms = Collections.emptyList();
         } else {
-            keyTransportEncryptionAlgorithms = List.copyOf(StringSupport.normalizeStringCollection(algorithms));
+            keyTransportEncryptionAlgorithms = Collections.unmodifiableList(new ArrayList<>(StringSupport.normalizeStringCollection(algorithms)));
         }
     }
     
@@ -265,7 +267,7 @@ public class BasicEncryptionConfiguration extends BasicWhitelistBlacklistConfigu
         if (configs == null) {
             keyAgreementConfigurations = Collections.emptyMap();
         } else {
-            keyAgreementConfigurations = Map.copyOf(configs);
+            keyAgreementConfigurations = Collections.unmodifiableMap(new HashMap<>(configs));
         }
     }
     

@@ -60,7 +60,7 @@ public class MetadataIndexStore<T> {
      */
     @Nonnull @NonnullElements @Unmodifiable @NotLive 
     public Set<MetadataIndexKey> getKeys() {
-        return ImmutableSet.copyOf(index.keySet());
+        return Collections.unmodifiableSet(new HashSet<>(index.keySet()));
     }
     
     /**
@@ -76,7 +76,7 @@ public class MetadataIndexStore<T> {
         if (items == null) {
             return Collections.emptySet();
         }
-        return ImmutableSet.copyOf(items);
+        return Collections.unmodifiableSet(new HashSet<>(items));
     }
     
     /**

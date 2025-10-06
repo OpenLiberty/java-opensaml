@@ -18,6 +18,7 @@
 package org.opensaml.saml.metadata.resolver;
 
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
@@ -94,7 +95,7 @@ public class ChainingMetadataResolver extends AbstractIdentifiableInitializableC
             return;
         }
 
-        resolvers = List.copyOf(newResolvers);
+        resolvers = Collections.unmodifiableList(new ArrayList<>(newResolvers));
     }
 
     /**

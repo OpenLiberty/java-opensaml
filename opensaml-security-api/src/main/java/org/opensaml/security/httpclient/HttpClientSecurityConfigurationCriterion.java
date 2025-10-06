@@ -17,6 +17,9 @@
 
 package org.opensaml.security.httpclient;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Nonnull;
@@ -43,8 +46,8 @@ public class HttpClientSecurityConfigurationCriterion implements Criterion {
      */
     public HttpClientSecurityConfigurationCriterion(@Nonnull @NonnullElements @NotEmpty final
             List<HttpClientSecurityConfiguration> configurations) {
-        Constraint.isNotNull(configurations, "List of configurations cannot be null");
-        configs = List.copyOf(configurations);
+    Constraint.isNotNull(configurations, "List of configurations cannot be null");
+    configs = Collections.unmodifiableList(new ArrayList<>(configurations));
         Constraint.isNotEmpty(configs, "At least one configuration is required");
         
     }
@@ -56,8 +59,8 @@ public class HttpClientSecurityConfigurationCriterion implements Criterion {
      */
     public HttpClientSecurityConfigurationCriterion(@Nonnull @NonnullElements  @NotEmpty final
             HttpClientSecurityConfiguration... configurations) {
-        Constraint.isNotNull(configurations, "List of configurations cannot be null");
-        configs = List.of(configurations);
+    Constraint.isNotNull(configurations, "List of configurations cannot be null");
+    configs = Collections.unmodifiableList(new ArrayList<>(Arrays.asList(configurations)));
         Constraint.isNotEmpty(configs, "At least one configuration is required");
     }
     
