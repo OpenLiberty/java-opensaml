@@ -17,31 +17,21 @@
 
 package org.opensaml.xmlsec.signature.impl;
 
-import net.shibboleth.utilities.java.support.primitive.CleanerCompat;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
-import javax.annotation.Nonnull;
+import net.shibboleth.utilities.java.support.collection.IndexingObjectStore;
 
 import org.opensaml.core.xml.AbstractXMLObject;
 import org.opensaml.core.xml.XMLObject;
 import org.opensaml.xmlsec.signature.X509Certificate;
-
-import net.shibboleth.utilities.java.support.collection.IndexingObjectStore;
-import net.shibboleth.utilities.java.support.primitive.CleanerSupport;
 
 /** Concrete implementation of {@link X509Certificate}. */
 public class X509CertificateImpl extends AbstractXMLObject implements X509Certificate {
 
     /** Class-level index of Base64 encoded cert values. */
     private static final IndexingObjectStore<String> B64_CERT_STORE = new IndexingObjectStore<>();
-
-    /** The Cleaner-like instance to use. */
-    private static final CleanerSupport.CleanerLike CLEANER = CleanerSupport.getInstance(X509CertificateImpl.class);
-
-    /** The Cleanable representing the current instance's cert value. */
-    private CleanerCompat.Cleanable cleanable;
 
     /** Index to a stored Base64 encoded cert. */
     private String b64CertIndex;
@@ -69,18 +59,12 @@ public class X509CertificateImpl extends AbstractXMLObject implements X509Certif
     public void setValue(final String newValue) {
         // Dump our cached DOM if the new value really is new
         final String currentCert = B64_CERT_STORE.get(b64CertIndex);
-        final String newCert = prepareForAssignment(currentCert, newValue);
+        final String b64Cert = prepareForAssignment(currentCert, newValue);
 
         // This is a new value, remove the old one, add the new one
-        if (!Objects.equals(currentCert, newCert)) {
-            if (cleanable != null) {
-                cleanable.clean();
-                cleanable = null;
-            }
-            b64CertIndex = B64_CERT_STORE.put(newCert);
-            if (b64CertIndex != null) {
-                cleanable = CLEANER.register(this, new CleanerState(b64CertIndex));
-            }
+        if (!Objects.equals(currentCert, b64Cert)) {
+            B64_CERT_STORE.remove(b64CertIndex);
+            b64CertIndex = B64_CERT_STORE.put(b64Cert);
         }
     }
 
@@ -90,28 +74,10 @@ public class X509CertificateImpl extends AbstractXMLObject implements X509Certif
         return Collections.emptyList();
     }
     
-    /**
-     * The action to be taken when the current state must be cleaned.
-     */
-    static class CleanerState implements Runnable {
-
-        /** The index to remove from the store. */
-        private String index;
-
-        /**
-         * Constructor.
-         *
-         * @param idx the index in the {@link X509CertificateImpl#B64_CERT_STORE}.
-         */
-        public CleanerState(@Nonnull final String idx) {
-            index = idx;
-        }
-
-        /** {@inheritDoc} */
-        public void run() {
-            X509CertificateImpl.B64_CERT_STORE.remove(index);
-        }
-
+    /** {@inheritDoc} */
+    @Override
+    protected void finalize() throws Throwable {
+        super.finalize();
+        B64_CERT_STORE.remove(b64CertIndex);
     }
-
 }
