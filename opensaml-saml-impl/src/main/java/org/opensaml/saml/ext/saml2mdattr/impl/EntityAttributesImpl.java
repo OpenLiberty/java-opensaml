@@ -17,6 +17,7 @@
 
 package org.opensaml.saml.ext.saml2mdattr.impl;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -71,9 +72,10 @@ public class EntityAttributesImpl extends AbstractXMLObject implements EntityAtt
             return null;
         }
 
-        return attributeInfo
-                .stream()
-                .filter(Predicates.or(Assertion.class::isInstance, Attribute.class::isInstance))
-                .collect(Collectors.toUnmodifiableList());
+      return Collections.unmodifiableList(
+            attributeInfo.stream()
+                .filter(o -> (o instanceof Assertion) || (o instanceof Attribute))
+                .collect(Collectors.toList())
+        );
     }
 }

@@ -25,6 +25,7 @@ import javax.annotation.Nonnull;
 
 import net.shibboleth.utilities.java.support.collection.IndexingObjectStore;
 import net.shibboleth.utilities.java.support.primitive.CleanerSupport;
+import net.shibboleth.utilities.java.support.primitive.CleanerCompat;
 
 import org.opensaml.core.xml.AbstractXMLObject;
 import org.opensaml.core.xml.XMLObject;

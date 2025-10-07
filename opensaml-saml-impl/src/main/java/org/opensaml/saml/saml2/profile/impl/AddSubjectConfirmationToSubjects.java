@@ -119,7 +119,7 @@ public class AddSubjectConfirmationToSubjects extends AbstractProfileAction {
         responseLookupStrategy = new MessageLookup<>(Response.class).compose(new OutboundMessageContextLookup());
                 
         // Default pulls from inbound message context and a SAMLMessageInfoContext child.
-        inResponseToLookupStrategy = new Function<>() {
+        inResponseToLookupStrategy = new Function<ProfileRequestContext, String>() {
             public String apply(final ProfileRequestContext input) {
                 if (response != null && response.getInResponseTo() != null) {
                     log.debug("{} Setting confirmation data InResponseTo to {}", getLogPrefix(),
@@ -132,7 +132,7 @@ public class AddSubjectConfirmationToSubjects extends AbstractProfileAction {
         };
         
         // Default pulls from SAML endpoint on outbound message context.
-        recipientLookupStrategy = new Function<>() {
+        recipientLookupStrategy = new Function<ProfileRequestContext, String>() {
             public String apply(final ProfileRequestContext input) {
                 if (input.getOutboundMessageContext() != null) {
                     try {
@@ -152,7 +152,7 @@ public class AddSubjectConfirmationToSubjects extends AbstractProfileAction {
         };
         
         // Default is 5 minutes.
-        lifetimeLookupStrategy = new Function<>() {
+        lifetimeLookupStrategy = new Function<ProfileRequestContext, Long>() {
             public Long apply(final ProfileRequestContext input) {
                 log.debug("{} Setting confirmation data NotOnOrAfter to 5 minutes from now", getLogPrefix());
                 return 5 * 60 * 1000L;

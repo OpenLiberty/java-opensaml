@@ -263,7 +263,11 @@ public class DefaultAssertionValidationContextBuilder
      */
     public void setRequiredConditions(@Nullable final Set<QName> conditions) {
         if (conditions != null) {
-            requiredConditions = conditions.stream().filter(Objects::nonNull).collect(Collectors.toUnmodifiableSet());
+            requiredConditions = Collections.unmodifiableSet(
+                conditions.stream()
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toSet())
+            );
         } else {
             requiredConditions = Collections.emptySet();
         }

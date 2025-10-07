@@ -42,8 +42,8 @@
         <module>../opensaml-profile-api</module>
         <module>../opensaml-profile-impl</module>
 
-        <module>../opensaml-bom</module>
-        <module>../opensaml-tests-bom</module>
+        <!-- <module>../opensaml-bom</module> -->
+        <!-- <module>../opensaml-tests-bom</module> -->
     </modules>
 
     <properties>

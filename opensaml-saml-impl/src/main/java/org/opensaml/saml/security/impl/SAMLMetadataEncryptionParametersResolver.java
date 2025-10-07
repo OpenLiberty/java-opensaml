@@ -364,7 +364,7 @@ public class SAMLMetadataEncryptionParametersResolver extends BasicEncryptionPar
      * @return the concatenation of the supplied lists
      */
     @SafeVarargs
-    private List<String> concatLists(@Nonnull final List<String> ... lists) {
+    private final List<String> concatLists(@Nonnull final List<String> ... lists) {
         return Stream.of(lists)
                 .filter(Objects::nonNull)
                 .flatMap(x -> x.stream())

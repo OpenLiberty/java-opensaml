@@ -95,9 +95,10 @@ public class SAMLArtifactMetadataIndex implements MetadataIndex {
      */
     public SAMLArtifactMetadataIndex(
             @Nonnull final List<Function<EntityDescriptor, Set<MetadataIndexKey>>> descriptorIndexingFunctions) {
-        indexingFunctions = List.copyOf(
-                Constraint.isNotNull(descriptorIndexingFunctions,
-                        "EntityDescriptor indexing functions list may not be null"));
+        indexingFunctions = Collections.unmodifiableList(
+            Constraint.isNotNull(descriptorIndexingFunctions,
+                "EntityDescriptor indexing functions list may not be null")
+        );
         Constraint.isNotEmpty(indexingFunctions, "EntityDescriptor indexing functions list may not be empty");
     }
 

@@ -213,11 +213,13 @@ public abstract class AbstractDynamicHTTPMetadataResolver extends AbstractDynami
         if (types == null) {
             supportedContentTypes = Collections.emptyList();
         } else {
-            supportedContentTypes = StringSupport.normalizeStringCollection(types)
+            supportedContentTypes = Collections.unmodifiableList(
+                StringSupport.normalizeStringCollection(types)
                     .stream()
                     .filter(s -> s != null)
                     .map(String::toLowerCase)
-                    .collect(Collectors.toUnmodifiableList());
+                    .collect(Collectors.toList())
+            );
         }
     }
     

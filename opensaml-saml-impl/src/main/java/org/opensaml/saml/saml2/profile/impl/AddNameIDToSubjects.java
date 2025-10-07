@@ -154,7 +154,7 @@ public class AddNameIDToSubjects extends AbstractProfileAction {
         assertionsLookupStrategy = new AssertionStrategy();
 
         // Default strategy is a 16-byte secure random source.
-        idGeneratorLookupStrategy = new Function<>() {
+        idGeneratorLookupStrategy = new Function<ProfileRequestContext, IdentifierGenerationStrategy>() {
             public IdentifierGenerationStrategy apply(final ProfileRequestContext input) {
                 return new SecureRandomIdentifierGenerationStrategy();
             }

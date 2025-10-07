@@ -150,7 +150,7 @@ public class PopulateHttpClientSecurityParametersHandler extends AbstractMessage
         if (resolver == null) {
             throw new ComponentInitializationException("HttpClientSecurityParametersResolver cannot be null");
         } else if (configurationLookupStrategy == null) {
-            configurationLookupStrategy = new Function<>() {
+            configurationLookupStrategy = new Function<MessageContext, List<HttpClientSecurityConfiguration>>() {
                 public List<HttpClientSecurityConfiguration> apply(final MessageContext input) {
                     // TODO should we have a library global default somewhere? Probably not.  Only TLS TrustEngine
                     // is semi-required (depending on usage), and that can't be defaulted anyway.

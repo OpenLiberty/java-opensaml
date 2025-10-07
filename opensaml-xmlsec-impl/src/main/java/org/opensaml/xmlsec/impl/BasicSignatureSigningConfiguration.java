@@ -17,6 +17,7 @@
 
 package org.opensaml.xmlsec.impl;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 

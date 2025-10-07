@@ -175,7 +175,7 @@ public class PopulateSignatureSigningParametersHandler extends AbstractMessageHa
         if (resolver == null) {
             throw new ComponentInitializationException("SignatureSigningParametersResolver cannot be null");
         } else if (configurationLookupStrategy == null) {
-            configurationLookupStrategy = new Function<>() {
+            configurationLookupStrategy = new Function<MessageContext, List<SignatureSigningConfiguration>>() {
                 public List<SignatureSigningConfiguration> apply(final MessageContext input) {
                     return Collections.singletonList(
                             SecurityConfigurationSupport.getGlobalSignatureSigningConfiguration());

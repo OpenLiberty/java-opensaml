@@ -19,6 +19,7 @@ package org.opensaml.saml.metadata.resolver.filter.impl;
 
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -174,7 +175,11 @@ public class NameIDFormatFilter extends AbstractInitializableComponent implement
         }
         
         final Set<String> existingFormats =
-                roleFormats.stream().map(NameIDFormat::getURI).collect(Collectors.toUnmodifiableSet());
+                Collections.unmodifiableSet(
+                    roleFormats.stream()
+                        .map(NameIDFormat::getURI)
+                        .collect(Collectors.toSet())
+                );
         
         for (final String format : formats) {
             if (existingFormats.contains(format)) {

@@ -184,7 +184,7 @@ public class PopulateSignatureSigningParameters
         if (resolver == null) {
             throw new ComponentInitializationException("SignatureSigningParametersResolver cannot be null");
         } else if (configurationLookupStrategy == null) {
-            configurationLookupStrategy = new Function<>() {
+            configurationLookupStrategy = new Function<ProfileRequestContext, List<SignatureSigningConfiguration>>() {
                 public List<SignatureSigningConfiguration> apply(final ProfileRequestContext input) {
                     return Collections.singletonList(
                             SecurityConfigurationSupport.getGlobalSignatureSigningConfiguration());
