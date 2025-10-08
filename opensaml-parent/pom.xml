@@ -50,6 +50,7 @@
         <shibboleth.projectName>java-opensaml</shibboleth.projectName>
         <java-support.version>8.4.2</java-support.version>
         <spring-extensions.version>6.3.2</spring-extensions.version>
+        <guava.version>32.0.1-jre</guava.version>
         <checkstyle.configLocation>${project.basedir}/../opensaml-parent/resources/checkstyle/checkstyle.xml</checkstyle.configLocation>
         <maven.compiler.release>8</maven.compiler.release>
     </properties>
