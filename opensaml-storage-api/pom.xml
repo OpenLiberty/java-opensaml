@@ -17,7 +17,7 @@
     <packaging>jar</packaging>
 
     <properties>
-        <automatic.module.name>org.opensaml.storage</automatic.module.name>
+        <automatic.module.name>io.openliberty.org.opensaml.storage</automatic.module.name>
     </properties>
 
     <dependencies>
