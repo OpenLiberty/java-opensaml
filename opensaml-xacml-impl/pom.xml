@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.opensaml</groupId>
+        <groupId>io.openliberty.org.opensaml</groupId>
         <artifactId>opensaml-parent</artifactId>
         <version>4.3.2</version>
         <relativePath>../opensaml-parent</relativePath>

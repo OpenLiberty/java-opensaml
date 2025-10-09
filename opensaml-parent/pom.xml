@@ -15,7 +15,7 @@
         A library for creating, reading, writing and performing some processing of SAML messages.
     </description>
 
-    <groupId>org.opensaml</groupId>
+    <groupId>io.openliberty.org.opensaml</groupId>
     <artifactId>opensaml-parent</artifactId>
     <version>4.3.2</version>
     <packaging>pom</packaging>
