@@ -19,11 +19,13 @@ package org.opensaml.core.xml.schema.impl;
 
 import javax.annotation.Nonnull;
 
-import net.shibboleth.utilities.java.support.primitive.StringSupport;
-
 import org.opensaml.core.xml.XMLObject;
 import org.opensaml.core.xml.io.AbstractXMLObjectUnmarshaller;
+import org.opensaml.core.xml.io.UnmarshallingException;
 import org.opensaml.core.xml.schema.XSBase64Binary;
+import org.w3c.dom.Text;
+
+import net.shibboleth.utilities.java.support.primitive.StringSupport;
 
 /**
  * Thread-safe unmarshaller for {@link XSBase64Binary} objects.
@@ -36,5 +38,17 @@ public class XSBase64BinaryUnmarshaller extends AbstractXMLObjectUnmarshaller {
         final XSBase64Binary xsBase64Binary = (XSBase64Binary) xmlObject;
 
         xsBase64Binary.setValue(StringSupport.trimOrNull(elementContent));
+    }
+
+    /**
+     * A fix to call Text.getWholeText() instead of Text.getData() since
+     * the X.509 Certificate is only partially unmarshalled.
+     */
+    @Override
+    protected void unmarshallTextContent(XMLObject xmlObject, Text content) throws UnmarshallingException {
+        final String textContent = StringSupport.trimOrNull(content.getWholeText());
+        if (textContent != null) {
+            processElementContent(xmlObject, textContent);
+        }
     }
 }

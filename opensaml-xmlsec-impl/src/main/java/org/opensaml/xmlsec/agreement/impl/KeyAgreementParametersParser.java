@@ -39,40 +39,41 @@ import net.shibboleth.utilities.java.support.logic.Constraint;
  * of {@link KeyAgreementParameters}.
  */
 public class KeyAgreementParametersParser {
-    
+
     /** Logger. */
-    private Logger log = LoggerFactory.getLogger(KeyAgreementParametersParser.class);
+    private final Logger log = LoggerFactory.getLogger(KeyAgreementParametersParser.class);
 
     /**
      * Parse the specified {@link AgreementMethod} into an instance of {@link KeyAgreementParameters}.
-     * 
+     *
      * @param agreementMethod the AgreementMethod to process
-     * 
+     *
      * @return the new instance of key agreement parameters
-     * 
+     *
      * @throws KeyAgreementException if parameters parsing does not complete successfully
      */
-    @Nonnull public KeyAgreementParameters parse(@Nonnull final AgreementMethod agreementMethod)
-            throws KeyAgreementException {
+    @Nonnull
+    public KeyAgreementParameters parse(@Nonnull final AgreementMethod agreementMethod) throws KeyAgreementException {
         Constraint.isNotNull(agreementMethod, "AgreementMethod was null");
-        
+
         final KeyAgreementParameters parameters = new KeyAgreementParameters();
-        
+
         final List<KeyAgreementParameterParser> parsers = getParsers();
-        
+
         final List<XMLObject> xmlChildren = Lists.newArrayList(agreementMethod.getUnknownXMLObjects());
 
         // KANonce is the only parameter with a "named" slot on AgreementMethod, so handle it specifically
         if (agreementMethod.getKANonce() != null) {
             xmlChildren.add(agreementMethod.getKANonce());
         }
-        
+
         for (final XMLObject xmlChild : xmlChildren) {
+
             boolean handled = false;
             for (final KeyAgreementParameterParser parser : parsers) {
                 if (parser.handles(xmlChild)) {
                     log.debug("AgreementMethod child '{}' was indicated to be handled by: {}",
-                            xmlChild.getElementQName(), parser.getClass().getName());
+                              xmlChild.getElementQName(), parser.getClass().getName());
                     parameters.add(parser.parse(xmlChild));
                     handled = true;
                     continue;
@@ -80,10 +81,10 @@ public class KeyAgreementParametersParser {
             }
             if (!handled) {
                 throw new KeyAgreementException("AgreementMethod child is not a supported parameter type: "
-                        + xmlChild.getElementQName());
+                                                + xmlChild.getElementQName());
             }
         }
-        
+
         // The grandparent's EncryptionMethod KeySize element is an implicit parameter to the agreement operation
         final Integer keySize = KeyAgreementSupport.getExplicitKeySize(agreementMethod);
         if (keySize != null) {
@@ -91,21 +92,28 @@ public class KeyAgreementParametersParser {
         }
 
         parameters.initializeAll();
-        
+
         return parameters;
     }
 
     /**
      * Obtain the list of {@link KeyAgreementParameterParser} instances to use.
-     * 
+     *
      * <p>
      * This implementation uses the Java Service API to load the instances. Subclasses may override.
      * </p>
-     * 
+     *
      * @return the list of parser instances
      */
-    @Nonnull protected List<KeyAgreementParameterParser> getParsers() {
-        final ServiceLoader<KeyAgreementParameterParser> loader = ServiceLoader.load(KeyAgreementParameterParser.class);
-        return Lists.newArrayList(loader);
+    @Nonnull
+    protected List<KeyAgreementParameterParser> getParsers() {
+        final ClassLoader originalClassLoader = Thread.currentThread().getContextClassLoader();
+        try { // Liberty Start
+            Thread.currentThread().setContextClassLoader(KeyAgreementParameterParser.class.getClassLoader());
+            final ServiceLoader<KeyAgreementParameterParser> loader = ServiceLoader.load(KeyAgreementParameterParser.class);
+            return Lists.newArrayList(loader);
+        } finally {
+            Thread.currentThread().setContextClassLoader(originalClassLoader);
+        } // Liberty End
     }
 }
