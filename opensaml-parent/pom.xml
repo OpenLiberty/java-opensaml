@@ -66,7 +66,7 @@
             <artifactId>slf4j-api</artifactId>
         </dependency>
         <dependency>
-            <groupId>net.shibboleth.utilities</groupId>
+                <groupId>io.openliberty.net.shibboleth.utilities</groupId>
             <artifactId>java-support</artifactId>
             <version>${java-support.version}</version>
         </dependency>
